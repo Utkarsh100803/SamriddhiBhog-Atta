@@ -3,549 +3,617 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Samriddhi Bhog — Pure Atta | Trusted Since 2004 | Home Delivery</title>
-  <meta name="description" content="Samriddhi Bhog — Soft stone-ground Atta, Besan, Sattu & Suji. Fibre-rich, cold-press milled, zero adulteration. Trusted by families since 2004. Home delivery available." />
+  <title>Samriddhi Bhog — Pure Stone-Ground Flour | Trusted Since 2004</title>
+  <meta name="description" content="Samriddhi Bhog — Stone-ground Aata, Besan, Sattu, Suji, Maida & Dalia. Zero adulteration, no preservatives. Trusted by 4000+ businesses since 2004. Order on WhatsApp." />
+  <meta name="keywords" content="Samriddhi Bhog, flour, aata, besan, sattu, suji, maida, dalia, Bihar, stone-ground, pure flour" />
   <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <style>
-    /* VIDEO HERO */
-    .video-hero { position:relative; width:100%; min-height:100vh; display:flex; align-items:center; justify-content:center; overflow:hidden; background:#111; }
-    .video-hero video { position:absolute; top:50%; left:50%; min-width:100%; min-height:100%; transform:translate(-50%,-50%); object-fit:cover; z-index:0; }
-    .video-hero .hero-overlay { position:absolute; inset:0; z-index:1; background:linear-gradient(to bottom, rgba(0,0,0,.55) 0%, rgba(0,0,0,.35) 50%, rgba(0,0,0,.65) 100%); }
-    .video-hero-content { position:relative; z-index:2; text-align:center; padding:calc(var(--nav-h) + 40px) 1.5rem 60px; max-width:860px; }
-    .video-hero-content .tagline { display:inline-flex; align-items:center; gap:.5rem; background:rgba(249,168,37,.15); border:1px solid rgba(249,168,37,.4); padding:.4rem 1.2rem; margin-bottom:1.5rem; font-family:var(--font-body); font-size:.68rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--accent-light); }
-    .video-hero-content h1 { font-size:clamp(2.6rem,5.5vw,5rem); color:#fff; line-height:1.1; margin-bottom:1.25rem; text-shadow:0 2px 20px rgba(0,0,0,.3); }
-    .video-hero-content h1 em { font-style:italic; color:var(--accent); }
-    .video-hero-content h1 .highlight-red { color:var(--secondary-lt); }
-    .video-hero-desc { font-size:1.1rem; color:rgba(255,255,255,.8); line-height:1.8; margin-bottom:2.5rem; max-width:600px; margin-inline:auto; }
-    .video-hero-btns { display:flex; gap:1rem; flex-wrap:wrap; justify-content:center; margin-bottom:2rem; }
-    .hero-trust-strip { display:flex; gap:1.5rem; justify-content:center; flex-wrap:wrap; font-family:var(--font-body); font-size:.65rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:rgba(255,255,255,.6); }
-    .hero-trust-strip span { display:flex; align-items:center; gap:.35rem; }
-    .hero-trust-strip i { color:var(--accent); }
-
-    /* MARQUEE */
-    .trust-marquee { background:var(--secondary); overflow:hidden; padding:14px 0; white-space:nowrap; position:relative; }
-    .trust-marquee-inner { display:inline-flex; gap:3rem; animation:marquee 20s linear infinite; font-family:var(--font-body); font-size:.8rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:#fff; }
-    .trust-marquee-inner span { display:flex; align-items:center; gap:.5rem; }
-    .trust-marquee-inner i { color:var(--accent-light); }
-    @keyframes marquee { 0% { transform:translateX(0); } 100% { transform:translateX(-50%); } }
-
-    /* WHY SWITCH */
-    .why-switch { padding:96px 0; background:var(--bg); }
-    .why-switch-inner { width:90%; max-width:var(--max-w); margin:0 auto; }
-    .why-switch-header { text-align:center; margin-bottom:3.5rem; }
-    .why-switch-header h2 { color:var(--primary); }
-    .why-switch-header p { max-width:600px; margin:.75rem auto 0; color:var(--text-muted); line-height:1.8; }
-    .ws-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2rem; }
-    .ws-card { background:#fff; padding:2rem; border-left:4px solid var(--accent); box-shadow:0 2px 12px rgba(0,0,0,.04); transition:all .25s; border-radius:6px; }
-    .ws-card:hover { border-left-color:var(--secondary); transform:translateY(-3px); box-shadow:0 8px 24px rgba(0,0,0,.08); }
-    .ws-card-icon { width:52px; height:52px; display:flex; align-items:center; justify-content:center; background:var(--accent-pale); color:var(--saffron); font-size:1.3rem; margin-bottom:1.25rem; border-radius:50%; }
-    .ws-card:hover .ws-card-icon { background:var(--secondary); color:#fff; }
-    .ws-card h4 { font-family:var(--font-body); font-weight:700; font-size:.92rem; color:var(--primary); margin-bottom:.6rem; }
-    .ws-card p { font-size:.84rem; color:var(--text-muted); line-height:1.65; }
-
-    /* QUALITY BADGES */
-    .sb-quality { background:var(--green); padding:56px 0; }
-    .sb-quality-grid { width:90%; max-width:var(--max-w); margin:0 auto; display:grid; grid-template-columns:repeat(4,1fr); gap:2rem; }
-    .sb-quality-item { text-align:center; color:#fff; }
-    .sb-quality-icon { width:60px; height:60px; margin:0 auto 1rem; border:2px solid rgba(255,255,255,.3); display:flex; align-items:center; justify-content:center; font-size:1.4rem; color:var(--accent-light); border-radius:50%; transition:all .2s; }
-    .sb-quality-item:hover .sb-quality-icon { background:var(--accent); color:var(--primary); border-color:var(--accent); }
-    .sb-quality-item h4 { font-family:var(--font-body); font-size:.82rem; font-weight:700; letter-spacing:.04em; color:#fff; margin-bottom:.4rem; }
-    .sb-quality-item p { font-size:.82rem; color:rgba(255,255,255,.75); line-height:1.55; max-width:240px; margin:0 auto; }
-
-    /* WHY CARDS */
-    .sb-why { padding:96px 0; background:#fff; }
-    .sb-why-title { text-align:center; margin-bottom:3.5rem; }
-    .sb-why-title h2 { color:var(--primary); }
-    .sb-why-grid { width:90%; max-width:var(--max-w); margin:0 auto; display:grid; grid-template-columns:repeat(4,1fr); gap:1.25rem; }
-    .sb-why-card { position:relative; overflow:hidden; aspect-ratio:3/4; cursor:default; border-radius:8px; }
-    .sb-why-card img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .4s; }
-    .sb-why-card:hover img { transform:scale(1.06); }
-    .sb-why-card .card-text { position:absolute; bottom:0; left:0; right:0; padding:1.5rem; z-index:2; background:linear-gradient(to top, rgba(0,0,0,.75) 0%, transparent 100%); }
-    .sb-why-card .card-sub { font-family:var(--font-display); font-size:.9rem; font-style:italic; color:rgba(255,255,255,.75); display:block; }
-    .sb-why-card .card-main { font-family:var(--font-body); font-size:1.4rem; font-weight:700; color:#fff; text-transform:uppercase; letter-spacing:.06em; line-height:1.2; }
-
-    /* HYGIENE */
-    .hygiene-section { padding:96px 0; background:var(--bg-alt); }
-    .hygiene-inner { width:90%; max-width:var(--max-w); margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; }
-    .hygiene-steps { counter-reset:step; }
-    .hygiene-step { display:flex; gap:1rem; padding:1.1rem 0; border-bottom:1px solid var(--border-light); align-items:flex-start; counter-increment:step; }
-    .hygiene-step:last-child { border-bottom:none; }
-    .hygiene-step-num { width:36px; height:36px; flex-shrink:0; display:flex; align-items:center; justify-content:center; background:var(--green); color:#fff; font-family:var(--font-body); font-size:.72rem; font-weight:700; border-radius:50%; }
-    .hygiene-step-num::before { content:counter(step); }
-    .hygiene-step h4 { font-size:.88rem; color:var(--primary); margin-bottom:.25rem; }
-    .hygiene-step p { font-size:.82rem; color:var(--text-muted); line-height:1.55; }
-    .hygiene-visual { position:relative; }
-    .hygiene-visual img { width:100%; display:block; border-radius:8px; }
-    .hygiene-badge { position:absolute; bottom:-16px; right:20px; background:var(--green); color:#fff; padding:.8rem 1.5rem; font-family:var(--font-body); font-size:.68rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; border-radius:4px; box-shadow:0 4px 16px rgba(0,0,0,.15); }
-
-    /* PRODUCTS */
-    .sb-products { padding:96px 0; background:var(--bg); }
-    .sb-products-inner { width:90%; max-width:var(--max-w); margin:0 auto; }
-    .sb-products-hdr { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:3rem; gap:1rem; flex-wrap:wrap; }
-    .sb-prod-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:1.5rem; }
-    .sb-prod-card { background:#fff; border-top:4px solid var(--green); transition:all .25s; overflow:hidden; border-radius:8px; box-shadow:0 2px 10px rgba(0,0,0,.04); }
-    .sb-prod-card:hover { border-top-color:var(--secondary); transform:translateY(-4px); box-shadow:0 8px 28px rgba(0,0,0,.08); }
-    .sb-prod-card-img { background:var(--bg-alt); padding:2rem; text-align:center; font-size:4rem; line-height:1; }
-    .sb-prod-card-body { padding:1.25rem; }
-    .sb-prod-card-name { font-family:var(--font-body); font-size:.92rem; font-weight:700; color:var(--primary); margin-bottom:.4rem; letter-spacing:.02em; }
-    .sb-prod-card-desc { font-size:.8rem; color:var(--text-muted); line-height:1.55; margin-bottom:.5rem; }
-    .sb-prod-card-tags { display:flex; gap:.35rem; flex-wrap:wrap; margin-bottom:1rem; }
-    .sb-prod-tag { font-family:var(--font-body); font-size:.6rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; padding:.25rem .55rem; border-radius:3px; }
-    .sb-prod-tag--green { background:var(--green-pale); color:var(--green); }
-    .sb-prod-tag--yellow { background:var(--accent-pale); color:var(--saffron); }
-    .sb-prod-tag--red { background:var(--secondary-pale); color:var(--secondary); }
-    .sb-prod-btn { display:flex; align-items:center; gap:.4rem; width:100%; justify-content:center; font-family:var(--font-body); font-size:.72rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; padding:.75rem 1rem; border:2px solid var(--green); color:var(--green); background:transparent; cursor:pointer; transition:all .2s; border-radius:4px; }
-    .sb-prod-btn:hover { background:var(--green); color:#fff; }
-    .sb-prod-coming { border-top-color:var(--accent) !important; position:relative; }
-    .sb-prod-coming::after { content:'COMING SOON'; position:absolute; top:16px; right:-28px; background:var(--accent); color:var(--primary); padding:.25rem 2rem; font-family:var(--font-body); font-size:.58rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; transform:rotate(45deg); }
-
-    /* TRUST */
-    .trust-section { padding:96px 0; background:var(--primary); position:relative; overflow:hidden; }
-    .trust-section::before { content:''; position:absolute; inset:0; background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23fff' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/svg%3E"); pointer-events:none; }
-    .trust-inner { width:90%; max-width:var(--max-w); margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; position:relative; z-index:1; }
-    .trust-inner h2 { color:#fff; margin-bottom:1rem; }
-    .trust-inner > div > p { color:rgba(255,255,255,.7); line-height:1.85; margin-bottom:1rem; }
-    .trust-stats { display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:rgba(255,255,255,.1); border-radius:8px; overflow:hidden; }
-    .trust-stat { background:var(--primary); padding:1.75rem; text-align:center; }
-    .trust-stat-num { font-family:var(--font-display); font-size:2.8rem; font-weight:700; color:var(--accent); }
-    .trust-stat-lbl { font-family:var(--font-body); font-size:.6rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:rgba(255,255,255,.5); margin-top:.2rem; }
-
-    /* DEALER CTA */
-    .sb-dealer-cta { background:var(--accent); padding:80px 0; position:relative; overflow:hidden; }
-    .sb-dealer-cta::before { content:''; position:absolute; top:0; right:0; width:40%; height:100%; background:linear-gradient(to left, rgba(255,255,255,.1), transparent); }
-    .sb-dealer-inner { width:90%; max-width:var(--max-w); margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; position:relative; z-index:1; }
-    .sb-dealer-inner h2 { color:var(--primary); margin-bottom:1rem; }
-    .sb-dealer-inner p { color:rgba(26,60,52,.7); line-height:1.8; margin-bottom:2rem; }
-    .sb-dealer-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:rgba(26,60,52,.1); border-radius:8px; overflow:hidden; }
-    .sb-dealer-stat { background:var(--accent); padding:1.5rem; text-align:center; }
-    .sb-dealer-stat-num { font-family:var(--font-display); font-size:2.4rem; font-weight:700; color:var(--primary); }
-    .sb-dealer-stat-lbl { font-family:var(--font-body); font-size:.6rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:rgba(26,60,52,.5); margin-top:.2rem; }
-
-    /* DELIVERY BANNER */
-    .delivery-banner { background:var(--green); padding:48px 0; }
-    .delivery-inner { width:90%; max-width:var(--max-w); margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:2rem; flex-wrap:wrap; }
-    .delivery-inner h3 { color:#fff; font-size:1.6rem; }
-    .delivery-inner p { color:rgba(255,255,255,.75); font-size:.95rem; }
-
-    /* BUTTONS */
-    .sb-btn { display:inline-flex; align-items:center; gap:.5rem; font-family:var(--font-body); font-size:.78rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; padding:1rem 2rem; border:2px solid; cursor:pointer; transition:all .2s; border-radius:4px; text-decoration:none; }
-    .sb-btn-red { background:var(--secondary); color:#fff; border-color:var(--secondary); }
-    .sb-btn-red:hover { background:var(--secondary-dk); border-color:var(--secondary-dk); }
-    .sb-btn-green { background:var(--green); color:#fff; border-color:var(--green); }
-    .sb-btn-green:hover { background:var(--green-lt); border-color:var(--green-lt); }
-    .sb-btn-dark { background:var(--primary); color:#fff; border-color:var(--primary); }
-    .sb-btn-dark:hover { background:var(--primary-light); border-color:var(--primary-light); }
-    .sb-btn-outline { background:transparent; color:var(--primary); border-color:var(--border-dark); border-radius:4px; }
-    .sb-btn-outline:hover { border-color:var(--secondary); color:var(--secondary); }
-    .sb-btn-outline i { color:#25D366; font-size:1.05rem; }
-    .sb-btn-white { background:#fff; color:var(--secondary); border-color:#fff; border-radius:4px; }
-    .sb-btn-white:hover { background:var(--accent); border-color:var(--accent); color:var(--primary); }
-    .sb-btn-outline-white { background:transparent; color:#fff; border-color:rgba(255,255,255,.5); border-radius:4px; }
-    .sb-btn-outline-white:hover { background:#fff; color:var(--secondary); border-color:#fff; }
-
-    /* FINAL CTA */
-    .sb-final-cta { background:var(--secondary); padding:72px 0; }
-    .sb-final-inner { width:90%; max-width:var(--max-w); margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:2rem; flex-wrap:wrap; }
-    .sb-final-inner h2 { color:#fff; margin-bottom:.5rem; }
-    .sb-final-inner p { color:rgba(255,255,255,.8); }
-    .sb-final-btns { display:flex; gap:1rem; flex-wrap:wrap; }
-
-    /* RESPONSIVE */
-    @media (max-width:960px) {
-      .ws-grid { grid-template-columns:1fr; }
-      .sb-quality-grid { grid-template-columns:1fr 1fr; }
-      .sb-why-grid { grid-template-columns:1fr 1fr; }
-      .sb-prod-grid { grid-template-columns:1fr 1fr !important; }
-      .hygiene-inner { grid-template-columns:1fr; }
-      .trust-inner { grid-template-columns:1fr; }
-      .sb-dealer-inner { grid-template-columns:1fr; }
-      .sb-final-inner { flex-direction:column; text-align:center; }
-      .delivery-inner { flex-direction:column; text-align:center; }
-    }
-    @media (max-width:580px) {
-      .sb-quality-grid { grid-template-columns:1fr; }
-      .sb-why-grid { grid-template-columns:1fr; }
-      .sb-prod-grid { grid-template-columns:1fr !important; }
-      .video-hero-content h1 { font-size:2.2rem; }
-    }
-    @media (max-width:768px) {
-      .nav-links { display:none; }
-      .nav-cta { display:none; }
-      .nav-hamburger { display:flex; }
-    }
-  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Samriddhi Bhog",
+    "description": "Premium stone-ground flour brand from Bihar, India. Trusted since 2004.",
+    "foundingDate": "2004",
+    "address": { "@type": "PostalAddress", "addressRegion": "Bihar", "addressCountry": "IN" },
+    "telephone": "+919999999999",
+    "url": "https://samriddhibhog.com"
+  }
+  </script>
 </head>
 <body>
 
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-left">
+      <span class="icon">🏆</span>
+      <span>20+ Years of Purity · FSSAI Certified · Government Audited</span>
+    </div>
+    <div class="topbar-right">
+      <a href="https://wa.me/919999999999" target="_blank" rel="noopener">
+        <span class="whatsapp-icon">📱</span>
+        <span>+91 99999 99999 · Available on WhatsApp</span>
+      </a>
+    </div>
+  </div>
+</div>
+
 <!-- NAVBAR -->
-<nav class="navbar navbar--solid">
+<nav class="navbar">
   <div class="nav-inner">
     <a href="index.html" class="nav-logo">Samriddhi <span>Bhog</span></a>
     <ul class="nav-links">
-      <li><a href="index.html" class="nav-link">Home</a></li>
-      <li><a href="about.html" class="nav-link">About Us</a></li>
+      <li><a href="index.html" class="nav-link active">Home</a></li>
       <li><a href="products.html" class="nav-link">Products</a></li>
-      <li><a href="dealership.html" class="nav-link">Dealership</a></li>
+      <li><a href="recipes.html" class="nav-link">Recipes</a></li>
+      <li><a href="infrastructure.html" class="nav-link">Our Mill</a></li>
+      <li><a href="dealership.html" class="nav-link">B2B</a></li>
+      <li><a href="about.html" class="nav-link">About</a></li>
       <li><a href="contact.html" class="nav-link">Contact</a></li>
     </ul>
-    <a href="https://wa.me/919876543210?text=Hello%2C%20I%20want%20to%20order%20Samriddhi%20Bhog%20Atta." target="_blank" class="nav-cta">
-      <i class="fa-brands fa-whatsapp"></i> Order Now
-    </a>
+    <a href="https://wa.me/919999999999?text=Hello%2C%20I%20want%20to%20order%20from%20Samriddhi%20Bhog." target="_blank" rel="noopener" class="nav-cta">Order on WhatsApp</a>
     <div class="nav-hamburger" role="button" aria-label="Open menu"><span></span><span></span><span></span></div>
   </div>
 </nav>
+
+<!-- MOBILE NAV -->
+<div class="nav-overlay"></div>
 <div class="nav-mobile">
   <button class="nav-mobile-close" aria-label="Close menu">&times;</button>
-  <a href="index.html" class="nav-link">Home</a>
-  <a href="about.html" class="nav-link">About Us</a>
-  <a href="products.html" class="nav-link">Products</a>
-  <a href="dealership.html" class="nav-link">Dealership</a>
-  <a href="contact.html" class="nav-link">Contact</a>
+  <a href="index.html" class="mobile-link">Home</a>
+  <a href="products.html" class="mobile-link">Products</a>
+  <a href="recipes.html" class="mobile-link">Recipes</a>
+  <a href="infrastructure.html" class="mobile-link">Our Mill</a>
+  <a href="dealership.html" class="mobile-link">B2B</a>
+  <a href="about.html" class="mobile-link">About</a>
+  <a href="contact.html" class="mobile-link">Contact</a>
+  <a href="https://wa.me/919999999999?text=Hello%2C%20I%20want%20to%20order%20from%20Samriddhi%20Bhog." target="_blank" rel="noopener" class="nav-cta">Order on WhatsApp</a>
 </div>
 
-<!-- VIDEO HERO -->
-<section class="video-hero">
-  <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=1920&q=80&auto=format&fit=crop">
-    <source src="https://videos.pexels.com/video-files/2942080/2942080-uhd_2560_1440_30fps.mp4" type="video/mp4" />
+<!-- ═══════════ HERO ═══════════ -->
+<section class="hero hero--video">
+  <!-- Background video -->
+  <video class="hero-video" autoplay muted loop playsinline preload="auto" disablepictureinpicture disableremoteplayback x-webkit-airplay="deny">
+    <source src="hero.mp4" type="video/mp4" />
   </video>
-  <div class="hero-overlay"></div>
-  <div class="video-hero-content">
-    <div class="tagline animate-fadeup"><i class="fa-solid fa-wheat-awn"></i> Trusted Since 2004 &#183; 20+ Years</div>
-    <h1 class="animate-fadeup delay-1">Your Family Deserves<br><em>Pure,</em> <span class="highlight-red">Fresh</span> Atta</h1>
-    <p class="video-hero-desc animate-fadeup delay-2">Soft stone-ground, cold-press milled, fibre-rich wheat flour &#8212; delivered to your doorstep. No chemicals. No adulteration. Just pure goodness for your rotis. <strong>&#x1F64F; Shuddhta ka Vaada.</strong></p>
-    <div class="video-hero-btns animate-fadeup delay-3">
-      <a href="products.html" class="sb-btn sb-btn-red"><i class="fa-solid fa-box-open"></i> Our Products</a>
-      <a href="https://wa.me/919876543210?text=Namaste%2C%20mujhe%20Samriddhi%20Bhog%20Atta%20order%20karna%20hai." target="_blank" class="sb-btn sb-btn-green"><i class="fa-brands fa-whatsapp"></i> WhatsApp Order</a>
-      <a href="dealership.html" class="sb-btn sb-btn-outline-white"><i class="fa-solid fa-handshake"></i> Dealership</a>
+
+  <!-- Cinematic overlay layers -->
+  <div class="hero-video-overlay"></div>
+  <div class="hero-video-vignette"></div>
+
+  <!-- Floating flour dust particles (CSS) -->
+  <div class="hero-particles" aria-hidden="true">
+    <span class="hp hp1"></span><span class="hp hp2"></span><span class="hp hp3"></span>
+    <span class="hp hp4"></span><span class="hp hp5"></span><span class="hp hp6"></span>
+    <span class="hp hp7"></span><span class="hp hp8"></span><span class="hp hp9"></span>
+    <span class="hp hp10"></span><span class="hp hp11"></span><span class="hp hp12"></span>
+  </div>
+
+  <!-- Content -->
+  <div class="hero-video-content">
+    <div class="hero-tagline-video">SHUDDHATA KA SWAAD</div>
+    <h1 class="hero-video-title">Samriddhi<br><span class="hero-title-gold">Bhog</span></h1>
+    <p class="hero-video-sub">आटा जैसे पहले होता था</p>
+    <div class="hero-video-btns">
+      <a href="products.html" class="btn btn-gold btn-caps">Shop Products</a>
+      <a href="https://wa.me/919999999999?text=Hello%2C%20I%20want%20to%20order%20from%20Samriddhi%20Bhog." target="_blank" rel="noopener" class="btn btn-outline-white btn-caps">Order on WhatsApp</a>
     </div>
-    <div class="hero-trust-strip animate-fadeup delay-4">
-      <span><i class="fa-solid fa-check-circle"></i> FSSAI Certified</span>
-      <span><i class="fa-solid fa-check-circle"></i> 100% Vegetarian</span>
-      <span><i class="fa-solid fa-check-circle"></i> Home Delivery</span>
-      <span><i class="fa-solid fa-check-circle"></i> Cold-Press Milled</span>
+    <div class="hero-video-badges">
+      <span class="hvb">✦ 20+ YEARS</span>
+      <span class="hvb">✦ FSSAI CERTIFIED</span>
+      <span class="hvb">✦ ZERO ADULTERATION</span>
     </div>
+  </div>
+
+  <!-- Scroll cue -->
+  <div class="hero-scroll-cue" aria-hidden="true">
+    <span class="hsc-line"></span>
+    <span class="hsc-text">SCROLL</span>
   </div>
 </section>
 
-<!-- TRUST MARQUEE -->
-<div class="trust-marquee">
-  <div class="trust-marquee-inner">
-    <span><i class="fa-solid fa-wheat-awn"></i> 20+ Years of Trust</span>
-    <span><i class="fa-solid fa-hand-holding-heart"></i> Pure &amp; Natural</span>
-    <span><i class="fa-solid fa-truck"></i> Home Delivery</span>
-    <span><i class="fa-solid fa-shield-halved"></i> FSSAI Certified</span>
-    <span><i class="fa-solid fa-leaf"></i> No Chemicals</span>
-    <span><i class="fa-solid fa-mortar-pestle"></i> Cold-Press Stone Milled</span>
-    <span><i class="fa-solid fa-heart"></i> Fibre Rich</span>
-    <span><i class="fa-solid fa-rupee-sign"></i> Affordable Quality</span>
-    <span><i class="fa-solid fa-wheat-awn"></i> 20+ Years of Trust</span>
-    <span><i class="fa-solid fa-hand-holding-heart"></i> Pure &amp; Natural</span>
-    <span><i class="fa-solid fa-truck"></i> Home Delivery</span>
-    <span><i class="fa-solid fa-shield-halved"></i> FSSAI Certified</span>
-    <span><i class="fa-solid fa-leaf"></i> No Chemicals</span>
-    <span><i class="fa-solid fa-mortar-pestle"></i> Cold-Press Stone Milled</span>
-    <span><i class="fa-solid fa-heart"></i> Fibre Rich</span>
-    <span><i class="fa-solid fa-rupee-sign"></i> Affordable Quality</span>
+<!-- ═══════════ TRUST MARQUEE ═══════════ -->
+<div class="trust-marquee" aria-hidden="true">
+  <div class="trust-marquee-track">
+    <div class="trust-marquee-content">
+      <span class="trust-marquee-item"><span class="star">✦</span> 20+ YEARS OF TRUST</span>
+      <span class="trust-marquee-item"><span class="star">✦</span> 100 MT/DAY</span>
+      <span class="trust-marquee-item"><span class="star">✦</span> ZERO ADULTERATION</span>
+      <span class="trust-marquee-item"><span class="star">✦</span> FSSAI CERTIFIED</span>
+      <span class="trust-marquee-item"><span class="star">✦</span> 4000+ CLIENTS</span>
+      <span class="trust-marquee-item"><span class="star">✦</span> NO PRESERVATIVES</span>
+      <span class="trust-marquee-item"><span class="star">✦</span> WOMEN-LED</span>
+    </div>
+    <div class="trust-marquee-content">
+      <span class="trust-marquee-item"><span class="star">✦</span> 20+ YEARS OF TRUST</span>
+      <span class="trust-marquee-item"><span class="star">✦</span> 100 MT/DAY</span>
+      <span class="trust-marquee-item"><span class="star">✦</span> ZERO ADULTERATION</span>
+      <span class="trust-marquee-item"><span class="star">✦</span> FSSAI CERTIFIED</span>
+      <span class="trust-marquee-item"><span class="star">✦</span> 4000+ CLIENTS</span>
+      <span class="trust-marquee-item"><span class="star">✦</span> NO PRESERVATIVES</span>
+      <span class="trust-marquee-item"><span class="star">✦</span> WOMEN-LED</span>
+    </div>
   </div>
 </div>
 
-<!-- WHY CHOOSE US -->
-<section class="why-switch">
-  <div class="why-switch-inner">
-    <div class="why-switch-header reveal">
-      <span class="section-label">Why Switch to Samriddhi Bhog?</span>
-      <h2>Your Atta Should Be Fresh, Not Factory-Stale</h2>
-      <p>Big-brand atta sits on shelves for months. Samriddhi Bhog is stone-milled fresh in small batches &#8212; so your rotis are softer, tastier, and more nutritious. Here&#8217;s why families are making the switch.</p>
-    </div>
-    <div class="ws-grid">
-      <div class="ws-card reveal">
-        <div class="ws-card-icon"><i class="fa-solid fa-mortar-pestle"></i></div>
-        <h4>Cold-Press Stone Milling</h4>
-        <p>Unlike factory roller mills that generate heat and kill nutrients, our traditional stone grinding preserves natural oils, fibre, and vitamins. Your atta keeps the <strong>whole wheat goodness</strong> intact.</p>
-      </div>
-      <div class="ws-card reveal delay-1">
-        <div class="ws-card-icon"><i class="fa-solid fa-cubes-stacked"></i></div>
-        <h4>Small Batch, Always Fresh</h4>
-        <p>We don&#8217;t mass-produce and warehouse for months. Samriddhi Bhog is milled in <strong>small, controlled batches</strong> &#8212; so the atta reaching your kitchen is always fresh, never stale.</p>
-      </div>
-      <div class="ws-card reveal delay-2">
-        <div class="ws-card-icon"><i class="fa-solid fa-indian-rupee-sign"></i></div>
-        <h4>Best Quality at Fair Price</h4>
-        <p>Premium atta doesn&#8217;t have to be expensive. We cut out middlemen and deliver directly &#8212; giving you <strong>better quality at a price that fits every family&#8217;s budget</strong>.</p>
-      </div>
-      <div class="ws-card reveal delay-3">
-        <div class="ws-card-icon"><i class="fa-solid fa-droplet"></i></div>
-        <h4>Proper Wheat Soaking &amp; Washing</h4>
-        <p>We follow the traditional method &#8212; wheat is <strong>properly soaked, washed, and sun-dried</strong> before grinding. This removes dust, stones, and impurities that factory mills skip.</p>
-      </div>
-      <div class="ws-card reveal delay-4">
-        <div class="ws-card-icon"><i class="fa-solid fa-hand-sparkles"></i></div>
-        <h4>100% Hygienic Process</h4>
-        <p>Workers wear <strong>hair caps, gloves, and sanitized uniforms</strong>. The entire mill is cleaned daily. We follow strict FSSAI hygiene protocols at every stage of production.</p>
-      </div>
-      <div class="ws-card reveal delay-5">
-        <div class="ws-card-icon"><i class="fa-solid fa-truck-fast"></i></div>
-        <h4>Free Home Delivery</h4>
-        <p>No need to carry heavy bags from the market. <strong>We deliver fresh atta right to your door</strong> &#8212; on time, every time. Just order on WhatsApp.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- QUALITY BADGES -->
-<section class="sb-quality">
-  <div class="sb-quality-grid">
-    <div class="sb-quality-item reveal">
-      <div class="sb-quality-icon"><i class="fa-solid fa-industry"></i></div>
-      <h4>State-of-the-art Manufacturing</h4>
-      <p>Modern machinery with traditional stone-grinding for the perfect texture.</p>
-    </div>
-    <div class="sb-quality-item reveal delay-1">
-      <div class="sb-quality-icon"><i class="fa-solid fa-heart-pulse"></i></div>
-      <h4>Fibre-Rich &amp; Nutritious</h4>
-      <p>Packed with natural fibre, vitamins &amp; minerals your family needs daily.</p>
-    </div>
-    <div class="sb-quality-item reveal delay-2">
-      <div class="sb-quality-icon"><i class="fa-solid fa-shield-halved"></i></div>
-      <h4>Impeccable Hygiene</h4>
-      <p>Hair caps, gloves, sanitized machines &#8212; stringent cleanliness at every stage.</p>
-    </div>
-    <div class="sb-quality-item reveal delay-3">
-      <div class="sb-quality-icon"><i class="fa-solid fa-leaf"></i></div>
-      <h4>Zero Adulteration</h4>
-      <p>No chemicals, no mixing, no shortcuts. 100% pure and natural flour.</p>
-    </div>
-  </div>
-</section>
-
-<!-- WHY SAMRIDDHI BHOG 4 IMAGE CARDS -->
-<section class="sb-why">
-  <div class="sb-why-title">
-    <span class="section-label">What Makes Us Different</span>
-    <h2>Why Samriddhi Bhog?</h2>
-  </div>
-  <div class="sb-why-grid">
-    <div class="sb-why-card reveal">
-      <img src="https://images.unsplash.com/photo-1586182987320-4f376d39d787?w=600&q=80&auto=format&fit=crop" alt="Soft fluffy rotis" />
-      <div class="card-text"><span class="card-sub">Signature</span><div class="card-main">Taste</div></div>
-    </div>
-    <div class="sb-why-card reveal delay-1">
-      <img src="https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=600&q=80&auto=format&fit=crop" alt="Golden wheat fields" />
-      <div class="card-text"><span class="card-sub">Best Of</span><div class="card-main">The Farm</div></div>
-    </div>
-    <div class="sb-why-card reveal delay-2">
-      <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=600&q=80&auto=format&fit=crop" alt="Stone grinding" />
-      <div class="card-text"><span class="card-sub">Freshly</span><div class="card-main">Stone Milled</div></div>
-    </div>
-    <div class="sb-why-card reveal delay-3">
-      <img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600&q=80&auto=format&fit=crop" alt="Delivery" />
-      <div class="card-text"><span class="card-sub">Free Home</span><div class="card-main">Delivery</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- HYGIENE PROCESS -->
-<section class="hygiene-section">
-  <div class="hygiene-inner">
-    <div class="reveal">
-      <span class="section-label" style="color:var(--green);">Our Hygienic Process</span>
-      <h2 style="color:var(--primary);">From Grain to Your Kitchen &#8212; 100% Clean</h2>
-      <p style="margin:.75rem 0 1.5rem; color:var(--text-muted); line-height:1.8;">Every bag of Samriddhi Bhog goes through a rigorous, hygienic process. We don&#8217;t cut corners &#8212; we clean them.</p>
-      <div class="hygiene-steps">
-        <div class="hygiene-step"><div class="hygiene-step-num"></div><div><h4>Wheat Selection &amp; Soaking</h4><p>Only premium-grade wheat is selected. It is properly soaked in clean water to soften the bran and remove surface dirt.</p></div></div>
-        <div class="hygiene-step"><div class="hygiene-step-num"></div><div><h4>Thorough Washing &amp; Drying</h4><p>Wheat is washed multiple times and sun-dried naturally. No artificial heating &#8212; preserving all natural nutrients.</p></div></div>
-        <div class="hygiene-step"><div class="hygiene-step-num"></div><div><h4>Cold-Press Stone Grinding</h4><p>Traditional chakki grinding at low temperature retains the wheat&#8217;s natural oils, fibre, and aroma. No heat damage.</p></div></div>
-        <div class="hygiene-step"><div class="hygiene-step-num"></div><div><h4>Lab Testing &amp; Quality Check</h4><p>Every batch is tested for moisture, ash content, and microbiological safety before packaging.</p></div></div>
-        <div class="hygiene-step"><div class="hygiene-step-num"></div><div><h4>Sealed Hygienic Packaging</h4><p>Workers wear hair caps, gloves, and uniforms. Atta is packed in multi-layer sealed bags to lock in freshness.</p></div></div>
-      </div>
-    </div>
-    <div class="hygiene-visual reveal delay-1">
-      <img src="https://images.unsplash.com/photo-1606787366850-de6330128bfc?w=700&q=80&auto=format&fit=crop" alt="Hygienic food production" />
-      <div class="hygiene-badge"><i class="fa-solid fa-shield-halved" style="margin-right:.4rem;"></i> FSSAI Approved</div>
-    </div>
-  </div>
-</section>
-
-<!-- PRODUCTS 4 + 1 COMING SOON -->
-<section class="sb-products">
-  <div class="sb-products-inner">
-    <div class="sb-products-hdr">
-      <div class="reveal"><span class="section-label">Our Products</span><h2 style="margin-top:.25rem; color:var(--primary);">Samriddhi Bhog Range</h2></div>
-      <a href="products.html" class="btn btn-outline reveal">View All <i class="fa-solid fa-arrow-right"></i></a>
-    </div>
-    <div class="sb-prod-grid">
-      <div class="sb-prod-card reveal">
-        <div class="sb-prod-card-img">&#127806;</div>
-        <div class="sb-prod-card-body">
-          <div class="sb-prod-card-name">Samriddhi Bhog Atta</div>
-          <div class="sb-prod-card-desc">Soft stone-ground whole wheat flour. Cold-press milled. Fibre-rich. Makes the softest rotis. Available in 5, 10, 25 kg.</div>
-          <div class="sb-prod-card-tags"><span class="sb-prod-tag sb-prod-tag--green">Fibre Rich</span><span class="sb-prod-tag sb-prod-tag--yellow">Cold Press</span></div>
-          <button class="sb-prod-btn" data-whatsapp-order="Samriddhi Bhog Atta"><i class="fa-brands fa-whatsapp"></i> Order Now</button>
-        </div>
-      </div>
-      <div class="sb-prod-card reveal delay-1">
-        <div class="sb-prod-card-img">&#128993;</div>
-        <div class="sb-prod-card-body">
-          <div class="sb-prod-card-name">Besan (Gram Flour)</div>
-          <div class="sb-prod-card-desc">Premium chana dal flour for pakoras, besan chilla, sweets, kadhi &amp; laddoo. Rich aroma, smooth consistency.</div>
-          <div class="sb-prod-card-tags"><span class="sb-prod-tag sb-prod-tag--green">Pure Chana</span><span class="sb-prod-tag sb-prod-tag--yellow">Fresh Ground</span></div>
-          <button class="sb-prod-btn" data-whatsapp-order="Besan"><i class="fa-brands fa-whatsapp"></i> Order Now</button>
-        </div>
-      </div>
-      <div class="sb-prod-card reveal delay-2">
-        <div class="sb-prod-card-img">&#127994;</div>
-        <div class="sb-prod-card-body">
-          <div class="sb-prod-card-name">Sattu</div>
-          <div class="sb-prod-card-desc">Roasted gram flour &#8212; the superfood of Bihar &amp; Bengal. High protein, cooling effect. Perfect for drinks, litti &amp; paratha.</div>
-          <div class="sb-prod-card-tags"><span class="sb-prod-tag sb-prod-tag--green">High Protein</span><span class="sb-prod-tag sb-prod-tag--red">Superfood</span></div>
-          <button class="sb-prod-btn" data-whatsapp-order="Sattu"><i class="fa-brands fa-whatsapp"></i> Order Now</button>
-        </div>
-      </div>
-      <div class="sb-prod-card reveal delay-3">
-        <div class="sb-prod-card-img">&#10024;</div>
-        <div class="sb-prod-card-body">
-          <div class="sb-prod-card-name">Suji (Semolina)</div>
-          <div class="sb-prod-card-desc">Perfectly granulated rava for halwa, upma, idli &amp; sheera. Uniform grain size. Golden colour. Great for prasad &amp; sweets.</div>
-          <div class="sb-prod-card-tags"><span class="sb-prod-tag sb-prod-tag--yellow">Pure Wheat</span><span class="sb-prod-tag sb-prod-tag--green">Perfect for Prasad</span></div>
-          <button class="sb-prod-btn" data-whatsapp-order="Suji"><i class="fa-brands fa-whatsapp"></i> Order Now</button>
-        </div>
-      </div>
-      <div class="sb-prod-card sb-prod-coming reveal delay-4">
-        <div class="sb-prod-card-img">&#127807;</div>
-        <div class="sb-prod-card-body">
-          <div class="sb-prod-card-name">Khapli Wheat Atta</div>
-          <div class="sb-prod-card-desc">Ancient Emmer wheat &#8212; low glycemic index, easy to digest, great for diabetics &amp; weight management. The healthiest atta.</div>
-          <div class="sb-prod-card-tags"><span class="sb-prod-tag sb-prod-tag--green">Low GI</span><span class="sb-prod-tag sb-prod-tag--red">Diabetic Friendly</span></div>
-          <button class="sb-prod-btn" disabled style="opacity:.6; cursor:not-allowed;">Coming Soon</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- HOME DELIVERY BANNER -->
-<section class="delivery-banner">
-  <div class="delivery-inner reveal">
-    <div>
-      <h3>&#x1F6F5; Free Home Delivery Available!</h3>
-      <p>No need to carry heavy bags. Order on WhatsApp and we&#8217;ll deliver fresh atta right to your doorstep.</p>
-    </div>
-    <a href="https://wa.me/919876543210?text=Namaste%2C%20mujhe%20home%20delivery%20chahiye%20Samriddhi%20Bhog%20Atta%20ka." target="_blank" class="sb-btn sb-btn-white" style="color:var(--green);"><i class="fa-brands fa-whatsapp"></i> Order via WhatsApp</a>
-  </div>
-</section>
-
-<!-- TRUST LEGACY -->
-<section class="trust-section">
-  <div class="trust-inner">
-    <div class="reveal">
-      <span class="section-label" style="color:var(--accent);">Trusted Since 2004</span>
-      <h2>20+ Years of Feeding Families with Love</h2>
-      <p>Samriddhi Bhog started in 2004 with a simple belief &#8212; every family deserves access to pure, chemical-free flour at an honest price. Two decades later, that belief remains unchanged.</p>
-      <p>From a small mill to serving thousands of households and businesses across multiple states, our journey has been built on <strong>trust, quality, and commitment</strong>. When you choose Samriddhi Bhog, you choose a brand that your family can rely on &#8212; generation after generation. &#x1F64F;</p>
-      <div style="display:flex; gap:1rem; flex-wrap:wrap; margin-top:1.5rem;">
-        <a href="about.html" class="sb-btn sb-btn-outline-white">Our Story <i class="fa-solid fa-arrow-right"></i></a>
-      </div>
-    </div>
-    <div class="trust-stats reveal delay-1">
-      <div class="trust-stat"><div class="trust-stat-num" data-count="20" data-suffix="+">0</div><div class="trust-stat-lbl">Years of Trust</div></div>
-      <div class="trust-stat"><div class="trust-stat-num" data-count="500" data-suffix="+">0</div><div class="trust-stat-lbl">Active Dealers</div></div>
-      <div class="trust-stat"><div class="trust-stat-num" data-count="15" data-suffix="+">0</div><div class="trust-stat-lbl">States Covered</div></div>
-      <div class="trust-stat"><div class="trust-stat-num" data-count="50000" data-suffix="+">0</div><div class="trust-stat-lbl">Families Served</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- DEALERSHIP CTA B2B -->
-<section class="sb-dealer-cta">
-  <div class="sb-dealer-inner">
-    <div class="reveal">
-      <span class="section-label" style="color:var(--primary);">For Dealers &amp; Distributors</span>
-      <h2>Grow Your Business with Samriddhi Bhog</h2>
-      <p>Join our growing network of dealers and distributors across Eastern India. Attractive margins, reliable supply, and a brand that consumers already trust and love. Become a partner today.</p>
-      <div style="display:flex; gap:1rem; flex-wrap:wrap;">
-        <a href="dealership.html" class="sb-btn sb-btn-dark">Apply for Dealership</a>
-        <a href="https://wa.me/919876543210?text=Hello%2C%20I%20am%20interested%20in%20Samriddhi%20Bhog%20dealership." target="_blank" class="sb-btn sb-btn-outline" style="border-color:var(--primary); color:var(--primary);"><i class="fa-brands fa-whatsapp" style="color:#25D366;"></i> Enquire on WhatsApp</a>
-      </div>
-    </div>
-    <div class="sb-dealer-stats reveal delay-1">
-      <div class="sb-dealer-stat"><div class="sb-dealer-stat-num">500+</div><div class="sb-dealer-stat-lbl">Active Dealers</div></div>
-      <div class="sb-dealer-stat"><div class="sb-dealer-stat-num">25%</div><div class="sb-dealer-stat-lbl">Dealer Margin</div></div>
-      <div class="sb-dealer-stat"><div class="sb-dealer-stat-num">15+</div><div class="sb-dealer-stat-lbl">States Covered</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- FINAL CTA -->
-<section class="sb-final-cta">
-  <div class="sb-final-inner reveal">
-    <div>
-      <h2>&#x1F64F; Shuddhta ka Vaada &#8212; Har Roti Mein</h2>
-      <p>Order Samriddhi Bhog Atta today and taste the difference. Pure, fresh, affordable.</p>
-    </div>
-    <div class="sb-final-btns">
-      <a href="https://wa.me/919876543210?text=Namaste%2C%20mujhe%20Samriddhi%20Bhog%20Atta%20order%20karna%20hai." target="_blank" class="sb-btn sb-btn-white"><i class="fa-brands fa-whatsapp"></i> Order Now</a>
-      <a href="contact.html" class="sb-btn sb-btn-outline-white">Contact Us</a>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer class="footer">
+<!-- ═══════════ ABOUT TEASER / OUR STORY ═══════════ -->
+<section class="section" style="background:var(--cream)">
   <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <a href="index.html" class="nav-logo">Samriddhi <span>Bhog</span></a>
-        <p>Pure Atta &#8212; Shuddhta ka Vaada. Stone-ground, cold-press milled, fibre-rich wheat flour. Trusted by families since 2004.</p>
-        <div class="footer-social">
-          <a href="#" class="social-btn" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-          <a href="#" class="social-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-          <a href="https://wa.me/919876543210" target="_blank" class="social-btn" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+    <div class="about-teaser-grid">
+      <div class="about-photo-placeholder reveal">FOUNDER PHOTO</div>
+      <div class="reveal">
+        <span class="section-label">OUR STORY</span>
+        <h2>20 Years of<br>Purity</h2>
+        <p class="mt-3" style="color:var(--text-body);line-height:1.8;font-size:1.4rem;">Started in 2004 from a single milling unit in Bihar. Today, 100 MT/day capacity, 4000+ B2B clients, and a brand born from 20 years of quiet, consistent trust. Family-run. Women-led. Still grinding the same way.</p>
+        <div class="about-stats">
+          <div class="about-stat">
+            <div class="about-stat-num">20+</div>
+            <div class="about-stat-label">YEARS</div>
+          </div>
+          <div class="about-stat">
+            <div class="about-stat-num">100</div>
+            <div class="about-stat-label">MT/DAY</div>
+          </div>
+          <div class="about-stat">
+            <div class="about-stat-num">4000+</div>
+            <div class="about-stat-label">CLIENTS</div>
+          </div>
+        </div>
+        <a href="about.html" class="text-link">Our full story →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ WHY TRUST US ═══════════ -->
+<section class="why-section">
+  <div class="container">
+    <span class="section-label reveal">OUR PROMISE</span>
+    <h2 class="reveal">Why Mothers Trust Us</h2>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <h4>Mill Hygiene First</h4>
+        <p>Every grain washed, soaked, and stone-sorted before milling. Cleanliness is our process, not a claim.</p>
+      </div>
+      <div class="why-card reveal">
+        <h4>Zero Adulteration</h4>
+        <p>No maida blending. No whiteners. No chemicals of any kind. Lab-tested every batch without exception.</p>
+      </div>
+      <div class="why-card reveal">
+        <h4>Small Batch Freshness</h4>
+        <p>100 MT capacity, small batch processing. Your flour was milled recently — not months before delivery.</p>
+      </div>
+      <div class="why-card reveal">
+        <h4>No Preservatives</h4>
+        <p>Packed and dispatched fresh. A shorter shelf life means it's actually pure. We wear that proudly.</p>
+      </div>
+      <div class="why-card reveal">
+        <h4>Premium Consistency</h4>
+        <p>Same taste, same texture, every order. Your kitchen shouldn't have to adjust. Neither should you.</p>
+      </div>
+      <div class="why-card reveal">
+        <h4>4000+ B2B Clients</h4>
+        <p>Kirana stores, restaurants, sweet shops, caterers — businesses across the region rely on us every day.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ PRODUCTS ═══════════ -->
+<section class="products-section">
+  <div class="container">
+    <span class="section-label reveal">OUR RANGE</span>
+    <h2 class="reveal">Pure, Fresh &amp;<br>Stone-Ground</h2>
+    <div class="products-grid">
+      <!-- Aata -->
+      <div class="product-card reveal" data-cat="aata">
+        <div class="product-card-img">
+          <div class="product-pack pack-aata">
+            <span class="pack-brand">S. BHOG</span>
+            <span class="pack-name">AATA</span>
+            <span class="pack-weight">10 KG</span>
+          </div>
+        </div>
+        <div class="product-card-body">
+          <h4 class="product-card-name">Whole Wheat Aata</h4>
+          <p class="product-card-desc">Our flagship product. Zero blending, zero chemicals. The roti that brings families back to the table.</p>
+          <div class="product-variants">
+            <span class="variant-tag">1 kg</span>
+            <span class="variant-tag">5 kg</span>
+            <span class="variant-tag">10 kg</span>
+            <span class="variant-tag">50 kg B2B</span>
+          </div>
+          <a href="https://wa.me/919999999999?text=I%20want%20to%20order%20Whole%20Wheat%20Aata" target="_blank" rel="noopener" class="btn btn-red btn-block">Order on WhatsApp</a>
         </div>
       </div>
-      <div class="footer-col">
-        <h5>Quick Links</h5>
-        <div class="footer-links">
-          <a href="index.html" class="footer-link">Home</a>
-          <a href="about.html" class="footer-link">About Us</a>
-          <a href="products.html" class="footer-link">Products</a>
-          <a href="dealership.html" class="footer-link">Dealership</a>
-          <a href="contact.html" class="footer-link">Contact</a>
+      <!-- Besan -->
+      <div class="product-card reveal" data-cat="besan">
+        <div class="product-card-img">
+          <div class="product-pack pack-besan">
+            <span class="pack-brand">S. BHOG</span>
+            <span class="pack-name">BESAN</span>
+            <span class="pack-weight">1 KG</span>
+          </div>
+        </div>
+        <div class="product-card-body">
+          <h4 class="product-card-name">Besan</h4>
+          <p class="product-card-desc">Finely milled chana dal. Rich aroma, no blending. The right besan for chilla, kadhi, and ladoo.</p>
+          <div class="product-variants">
+            <span class="variant-tag">1 kg</span>
+            <span class="variant-tag">5 kg</span>
+            <span class="variant-tag">10 kg</span>
+            <span class="variant-tag">50 kg B2B</span>
+          </div>
+          <a href="https://wa.me/919999999999?text=I%20want%20to%20order%20Besan" target="_blank" rel="noopener" class="btn btn-red btn-block">Order on WhatsApp</a>
         </div>
       </div>
-      <div class="footer-col">
-        <h5>Our Products</h5>
-        <div class="footer-links">
-          <a href="products.html" class="footer-link">Samriddhi Bhog Atta</a>
-          <a href="products.html" class="footer-link">Besan</a>
-          <a href="products.html" class="footer-link">Sattu</a>
-          <a href="products.html" class="footer-link">Suji</a>
+      <!-- Sattu -->
+      <div class="product-card reveal" data-cat="sattu">
+        <div class="product-card-img">
+          <div class="product-pack pack-sattu">
+            <span class="pack-brand">S. BHOG</span>
+            <span class="pack-name">SATTU</span>
+            <span class="pack-weight">1 KG</span>
+          </div>
+        </div>
+        <div class="product-card-body">
+          <h4 class="product-card-name">Sattu</h4>
+          <p class="product-card-desc">Slow-roasted, coarsely ground. Bihar's traditional power food — protein-rich and deeply nourishing.</p>
+          <div class="product-variants">
+            <span class="variant-tag">500 g</span>
+            <span class="variant-tag">1 kg</span>
+            <span class="variant-tag">5 kg</span>
+            <span class="variant-tag">50 kg B2B</span>
+          </div>
+          <a href="https://wa.me/919999999999?text=I%20want%20to%20order%20Sattu" target="_blank" rel="noopener" class="btn btn-red btn-block">Order on WhatsApp</a>
         </div>
       </div>
-      <div class="footer-col">
-        <h5>Order on WhatsApp</h5>
-        <p style="color:rgba(255,255,255,.45); font-size:.88rem; margin-bottom:1rem;">Home delivery or bulk orders? Message us.</p>
-        <a href="https://wa.me/919876543210?text=Namaste%20Samriddhi%20Bhog" target="_blank" style="display:inline-flex; align-items:center; gap:.4rem; background:#25D366; color:#fff; padding:.6rem 1.2rem; font-family:var(--font-body); font-size:.78rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; border-radius:4px; text-decoration:none;"><i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp</a>
-        <div style="margin-top:1.5rem;">
-          <p style="color:rgba(255,255,255,.45); font-size:.82rem; margin-bottom:.4rem;"><i class="fa-solid fa-phone" style="color:var(--accent); margin-right:.4rem;"></i>+91 98765 43210</p>
-          <p style="color:rgba(255,255,255,.45); font-size:.82rem;"><i class="fa-solid fa-envelope" style="color:var(--accent); margin-right:.4rem;"></i>info@samriddhibhog.com</p>
+      <!-- Suji -->
+      <div class="product-card reveal" data-cat="suji">
+        <div class="product-card-img">
+          <div class="product-pack pack-suji">
+            <span class="pack-brand">S. BHOG</span>
+            <span class="pack-name">SUJI</span>
+            <span class="pack-weight">500 G</span>
+          </div>
+        </div>
+        <div class="product-card-body">
+          <h4 class="product-card-name">Suji / Semolina</h4>
+          <p class="product-card-desc">Medium-grain, clean texture. Halwa, upma, and sheera that set just right — every single time.</p>
+          <div class="product-variants">
+            <span class="variant-tag">500 g</span>
+            <span class="variant-tag">1 kg</span>
+            <span class="variant-tag">5 kg</span>
+            <span class="variant-tag">50 kg B2B</span>
+          </div>
+          <a href="https://wa.me/919999999999?text=I%20want%20to%20order%20Suji" target="_blank" rel="noopener" class="btn btn-red btn-block">Order on WhatsApp</a>
+        </div>
+      </div>
+      <!-- Maida -->
+      <div class="product-card reveal" data-cat="maida">
+        <div class="product-card-img">
+          <div class="product-pack pack-maida">
+            <span class="pack-brand">S. BHOG</span>
+            <span class="pack-name">MAIDA</span>
+            <span class="pack-weight">5 KG</span>
+          </div>
+        </div>
+        <div class="product-card-body">
+          <h4 class="product-card-name">Maida</h4>
+          <p class="product-card-desc">Fine-milled refined flour. No artificial whiteners. Ideal for bakers, sweet shops, and cloud kitchens.</p>
+          <div class="product-variants">
+            <span class="variant-tag">1 kg</span>
+            <span class="variant-tag">5 kg</span>
+            <span class="variant-tag">10 kg</span>
+            <span class="variant-tag">50 kg B2B</span>
+          </div>
+          <a href="https://wa.me/919999999999?text=I%20want%20to%20order%20Maida" target="_blank" rel="noopener" class="btn btn-red btn-block">Order on WhatsApp</a>
+        </div>
+      </div>
+      <!-- Dalia -->
+      <div class="product-card reveal" data-cat="dalia">
+        <div class="product-card-img">
+          <div class="product-pack pack-dalia">
+            <span class="pack-brand">S. BHOG</span>
+            <span class="pack-name">DALIA</span>
+            <span class="pack-weight">500 G</span>
+          </div>
+        </div>
+        <div class="product-card-body">
+          <h4 class="product-card-name">Dalia</h4>
+          <p class="product-card-desc">Coarsely cracked whole wheat. High-fibre, clean, nutty taste. Porridge, khichdi, and morning meals.</p>
+          <div class="product-variants">
+            <span class="variant-tag">500 g</span>
+            <span class="variant-tag">1 kg</span>
+            <span class="variant-tag">5 kg</span>
+            <span class="variant-tag">50 kg B2B</span>
+          </div>
+          <a href="https://wa.me/919999999999?text=I%20want%20to%20order%20Dalia" target="_blank" rel="noopener" class="btn btn-red btn-block">Order on WhatsApp</a>
         </div>
       </div>
     </div>
-    <div class="footer-bottom">
-      <p>&copy; 2025 Samriddhi Bhog. All rights reserved.</p>
-      <div class="footer-bottom-links">
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Use</a>
-        <a href="contact.html">Contact</a>
+  </div>
+</section>
+
+<!-- ═══════════ COMPARISON / DOUBT ═══════════ -->
+<section class="comparison-section">
+  <div class="container">
+    <span class="section-label reveal">THE RIGHT QUESTION</span>
+    <h2 class="reveal">What's Really in Your<br>Packaged Flour?</h2>
+    <div class="comparison-grid">
+      <div class="comparison-col comparison-col--us reveal">
+        <h3><span class="icon">✦</span> Samriddhi Bhog</h3>
+        <div class="comparison-item"><span class="check">✔</span> Wheat cleaned &amp; sorted before milling</div>
+        <div class="comparison-item"><span class="check">✔</span> Zero maida blending — guaranteed</div>
+        <div class="comparison-item"><span class="check">✔</span> No preservatives — packed fresh</div>
+        <div class="comparison-item"><span class="check">✔</span> Dispatched within days of milling</div>
+        <div class="comparison-item"><span class="check">✔</span> Mill audited by government inspectors</div>
+        <div class="comparison-item"><span class="check">✔</span> Price = purity, not advertising</div>
       </div>
+      <div class="comparison-vs">V S</div>
+      <div class="comparison-col comparison-col--them reveal">
+        <h3>? Big Brand Flour</h3>
+        <div class="comparison-item"><span class="cross">?</span> Wheat origin often undisclosed</div>
+        <div class="comparison-item"><span class="cross">?</span> Blending with lower-grade flour possible</div>
+        <div class="comparison-item"><span class="cross">?</span> Long shelf life often requires additives</div>
+        <div class="comparison-item"><span class="cross">?</span> Could be packed months before purchase</div>
+        <div class="comparison-item"><span class="cross">?</span> Third-party audit details rarely shared</div>
+        <div class="comparison-item"><span class="cross">?</span> Price includes IPL sponsorships</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ PROCESS / HOW WE MAKE IT ═══════════ -->
+<section class="process-section">
+  <div class="container">
+    <span class="section-label reveal">INSIDE OUR MILL</span>
+    <h2 class="reveal">How We Make It</h2>
+    <div class="process-steps reveal">
+      <div class="process-step">
+        <div class="process-step-num">1</div>
+        <span class="process-step-label">Premium Grain Quality</span>
+      </div>
+      <span class="process-arrow">▶</span>
+      <div class="process-step">
+        <div class="process-step-num">2</div>
+        <span class="process-step-label">Cleaning &amp; Sorting</span>
+      </div>
+      <span class="process-arrow">▶</span>
+      <div class="process-step">
+        <div class="process-step-num">3</div>
+        <span class="process-step-label">Washing &amp; Soaking</span>
+      </div>
+      <span class="process-arrow">▶</span>
+      <div class="process-step">
+        <div class="process-step-num">4</div>
+        <span class="process-step-label">Milling</span>
+      </div>
+      <span class="process-arrow">▶</span>
+      <div class="process-step">
+        <div class="process-step-num">5</div>
+        <span class="process-step-label">Quality Testing</span>
+      </div>
+      <span class="process-arrow">▶</span>
+      <div class="process-step">
+        <div class="process-step-num">6</div>
+        <span class="process-step-label">Packaging</span>
+      </div>
+      <span class="process-arrow">▶</span>
+      <div class="process-step">
+        <div class="process-step-num">7</div>
+        <span class="process-step-label">Dispatch</span>
+      </div>
+    </div>
+    <div class="process-photos reveal">
+      <div class="process-photo">MILL EXTERIOR</div>
+      <div class="process-photo">WHEAT WASHING UNIT</div>
+      <div class="process-photo">MILLING MACHINERY</div>
+    </div>
+    <div class="process-cta reveal">
+      <a href="infrastructure.html" class="text-link">Book a Factory Tour →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ VIDEO SECTION ═══════════ -->
+<section class="section" style="background:var(--cream-dark)">
+  <div class="container">
+    <span class="section-label reveal">WATCH</span>
+    <h2 class="reveal">See How We Make It</h2>
+    <div class="video-grid">
+      <div class="video-card reveal">
+        <div class="video-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        <span class="video-card-title">Wheat Washing &amp; Soaking</span>
+      </div>
+      <div class="video-card reveal">
+        <div class="video-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        <span class="video-card-title">Inside Our Milling Unit</span>
+      </div>
+      <div class="video-card reveal">
+        <div class="video-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        <span class="video-card-title">Quality Testing &amp; Packaging</span>
+      </div>
+      <div class="video-card reveal">
+        <div class="video-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        <span class="video-card-title">Why Our Mill Beats Chakki</span>
+      </div>
+    </div>
+    <p class="text-center mt-4 reveal" style="color:var(--text-muted);font-size:.9rem;">Our mill is open for visits. <a href="contact.html" class="text-link">Book a factory tour →</a></p>
+  </div>
+</section>
+
+<!-- ═══════════ B2B SECTION (commented out) ═══════════
+<section class="b2b-section">
+  <div class="container">
+    <span class="section-label reveal">B2B SUPPLY</span>
+    <h2 class="reveal">Supplying to 4000+ Businesses</h2>
+    <div class="b2b-grid">
+      <div class="b2b-col reveal">
+        <h4>Who We Serve</h4>
+        <ul class="b2b-list">
+          <li>Kirana Stores</li>
+          <li>Dhabas &amp; Restaurants</li>
+          <li>Caterers</li>
+          <li>Sweet Shops</li>
+          <li>Cloud Kitchens</li>
+          <li>Retail Chains</li>
+        </ul>
+      </div>
+      <div class="b2b-col reveal">
+        <h4>What We Offer</h4>
+        <ul class="b2b-list">
+          <li>50 kg Bags</li>
+          <li>Custom Labelling</li>
+          <li>GST Invoice</li>
+          <li>Credit Terms</li>
+          <li>Dedicated Account Manager</li>
+          <li>Regular Supply Schedule</li>
+        </ul>
+      </div>
+    </div>
+    <div class="mt-4 reveal">
+      <a href="https://wa.me/919999999999?text=I%20want%20to%20enquire%20about%20Bulk%20Supply" target="_blank" rel="noopener" class="btn btn-red">Enquire for Bulk Supply</a>
+    </div>
+  </div>
+</section>
+-->
+
+<!-- ═══════════ INFRASTRUCTURE TEASER ═══════════ -->
+<section class="section" style="background:var(--cream-dark)">
+  <div class="container">
+    <span class="section-label reveal">OUR FACILITY</span>
+    <h2 class="reveal">Our Mill — Where Purity Happens</h2>
+    <div class="infra-grid">
+      <div class="infra-photo reveal">Mill Exterior</div>
+      <div class="infra-photo reveal">Wheat Washing Unit</div>
+      <div class="infra-photo reveal">Milling Machinery</div>
+      <div class="infra-photo reveal">Packaging Section</div>
+      <div class="infra-photo reveal">Quality Lab</div>
+      <div class="infra-photo reveal">Cold Storage / Dispatch</div>
+    </div>
+    <div class="text-center mt-4 reveal">
+      <a href="infrastructure.html" class="text-link">See full infrastructure →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ CERTIFICATIONS BAR ═══════════ -->
+<div class="cert-bar">
+  <div class="cert-bar-inner">
+    <span class="cert-item"><span class="star">✦</span> FSSAI CERTIFIED</span>
+    <span class="cert-item"><span class="star">✦</span> GOVERNMENT AUDITED</span>
+    <span class="cert-item"><span class="star">✦</span> SSIA CERTIFIED</span>
+    <span class="cert-item"><span class="star">✦</span> ZERO ADULTERATION</span>
+    <span class="cert-item"><span class="star">✦</span> WOMEN-LED BRAND</span>
+  </div>
+</div>
+
+<!-- ═══════════ RECIPES TEASER ═══════════ -->
+<section class="section" style="background:var(--cream-dark)">
+  <div class="container">
+    <span class="section-label reveal">FROM OUR KITCHEN</span>
+    <h2 class="reveal">Cook With Samriddhi Bhog</h2>
+    <div class="recipes-grid">
+      <div class="recipe-card reveal">
+        <div class="recipe-card-img">ROTI PHOTO</div>
+        <div class="recipe-card-body">
+          <h4>Soft Roti</h4>
+          <div class="recipe-card-meta">
+            <span>⏱ 20 min</span>
+            <span>Easy</span>
+          </div>
+          <p class="recipe-card-product">Uses: Whole Wheat Aata</p>
+        </div>
+      </div>
+      <div class="recipe-card reveal">
+        <div class="recipe-card-img">BESAN CHILLA PHOTO</div>
+        <div class="recipe-card-body">
+          <h4>Besan Chilla</h4>
+          <div class="recipe-card-meta">
+            <span>⏱ 15 min</span>
+            <span>Easy</span>
+          </div>
+          <p class="recipe-card-product">Uses: Besan</p>
+        </div>
+      </div>
+      <div class="recipe-card reveal">
+        <div class="recipe-card-img">SATTU DRINK PHOTO</div>
+        <div class="recipe-card-body">
+          <h4>Sattu Sharbat</h4>
+          <div class="recipe-card-meta">
+            <span>⏱ 5 min</span>
+            <span>Easy</span>
+          </div>
+          <p class="recipe-card-product">Uses: Sattu</p>
+        </div>
+      </div>
+    </div>
+    <div class="text-center mt-4 reveal">
+      <a href="recipes.html" class="text-link">Explore all recipes →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ CONTACT / FOOTER CTA ═══════════ -->
+<section class="contact-cta">
+  <div class="contact-cta-inner">
+    <div>
+      <h2>Ready to Taste the Difference?</h2>
+      <p>Order pure, stone-ground flour on WhatsApp. Delivered to your door.</p>
+    </div>
+    <div style="display:flex;gap:1rem;flex-wrap:wrap">
+      <a href="https://wa.me/919999999999?text=Hello%2C%20I%20want%20to%20order%20from%20Samriddhi%20Bhog." target="_blank" rel="noopener" class="btn btn-white">Order on WhatsApp</a>
+      <a href="contact.html" class="btn btn-outline-white">Contact Us</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <h3>Samriddhi Bhog</h3>
+      <p class="tagline">"Shuddhata ka Swaad" — The Taste of Purity</p>
+      <a href="https://wa.me/919999999999" target="_blank" rel="noopener" class="btn btn-whatsapp" style="font-size:.82rem;padding:.7rem 1.6rem">☎ +91 99999 99999</a>
+      <p class="location">Bihar, India · Est. 2004</p>
+    </div>
+    <div class="footer-col">
+      <h4>Products</h4>
+      <a href="products.html">Whole Wheat Aata</a>
+      <a href="products.html">Besan</a>
+      <a href="products.html">Sattu</a>
+      <a href="products.html">Suji / Semolina</a>
+      <a href="products.html">Maida</a>
+      <a href="products.html">Dalia</a>
+    </div>
+    <div class="footer-col">
+      <h4>B2B</h4>
+      <a href="dealership.html">B2B Supply</a>
+      <a href="dealership.html">Dealership</a>
+      <a href="contact.html">Book a Factory Tour</a>
+    </div>
+    <div class="footer-col">
+      <h4>Help</h4>
+      <a href="contact.html">Contact</a>
+      <a href="https://wa.me/919999999999" target="_blank" rel="noopener">WhatsApp Order</a>
+      <a href="contact.html">Email Us</a>
+      <a href="contact.html">Visit the Mill</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-bottom-inner">
+      <span>© 2025 Samriddhi Bhog. All rights reserved.</span>
+      <span>FSSAI Lic. No. XXXXXXXXXXXX</span>
     </div>
   </div>
 </footer>
 
+<!-- WHATSAPP FLOAT -->
 <div class="whatsapp-float">
-  <div class="whatsapp-float-tip">WhatsApp Order</div>
-  <div class="whatsapp-float-btn" role="button" aria-label="Order on WhatsApp"><i class="fa-brands fa-whatsapp" style="color:white;"></i></div>
+  <a href="https://wa.me/919999999999?text=Hello%2C%20I%20want%20to%20order%20from%20Samriddhi%20Bhog." target="_blank" rel="noopener" class="whatsapp-float-btn" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 32 32"><path d="M16.004 0C7.164 0 .002 7.158.002 15.995c0 2.82.737 5.573 2.14 7.998L.01 32l8.235-2.1a15.95 15.95 0 007.759 1.977h.007C24.84 31.877 32 24.72 32 15.884 32 7.045 24.844 0 16.004 0zm0 29.313a13.36 13.36 0 01-6.808-1.865l-.488-.29-5.064 1.328 1.35-4.94-.318-.505a13.32 13.32 0 01-2.042-7.046C2.634 8.613 8.623 2.627 16.004 2.627S29.373 8.613 29.373 15.995c0 7.381-5.988 13.318-13.369 13.318zm7.327-9.985c-.402-.2-2.376-1.172-2.745-1.306-.368-.134-.636-.2-.905.2-.268.402-1.04 1.306-1.274 1.574-.235.268-.469.301-.87.1-.402-.2-1.697-.625-3.232-1.993-1.195-1.065-2.001-2.38-2.235-2.782-.235-.402-.025-.619.176-.819.18-.18.402-.469.602-.703.201-.235.268-.402.402-.67.134-.268.067-.502-.033-.703-.1-.2-.905-2.18-1.24-2.986-.326-.783-.659-.677-.905-.69-.235-.012-.502-.014-.77-.014s-.703.1-1.071.502c-.368.402-1.407 1.374-1.407 3.352s1.44 3.889 1.64 4.157c.2.268 2.835 4.328 6.871 6.069.96.414 1.71.661 2.294.847.964.307 1.842.263 2.536.16.773-.116 2.376-.97 2.712-1.908.335-.937.335-1.74.235-1.908-.1-.167-.368-.268-.77-.468z"/></svg>
+  </a>
 </div>
 
 <script src="script.js"></script>

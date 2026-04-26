@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Samriddhi Bhog — Cinematic Hero Animation</title>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html,body{width:100%;height:100%;background:#000;overflow:hidden}
+    canvas{display:block;width:100%;height:100%}
+  </style>
+</head>
+<body>
+<canvas id="heroCanvas"></canvas>
+<script>
+(function(){
+  'use strict';
+
+  const canvas = document.getElementById('heroCanvas');
+  const ctx    = canvas.getContext('2d');
+
+  /* ── Resize ── */
+  function resize(){
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  /* ── Master clock ── */
+  // Full loop = 7 seconds = 420 frames @ 60fps
+  const LOOP_DURATION = 7000; // ms
+  let startTime = null;
+
+  /* ──────────────────────────────────────────
+     PARTICLE SYSTEM
+  ────────────────────────────────────────── */
+  const MAX_PARTICLES = 320;
+  const particles = [];
+
+  function easeInOut(t){ return t<.5 ? 2*t*t : -1+(4-2*t)*t; }
+  function lerp(a,b,t){ return a+(b-a)*t; }
+  function clamp(v,mn,mx){ return Math.max(mn,Math.min(mx,v)); }
+
+  /* ── Particle factory ── */
+  function spawnParticle(phase, cx, cy){
+    const angle  = Math.random() * Math.PI * 2;
+    const speed  = 0.2 + Math.random() * 1.2;
+    const life   = 2500 + Math.random() * 3000;
+    const size   = 1 + Math.random() * 3.5;
+    const isGrain = phase < 0.4;
+    return {
+      x: cx + (Math.random()-0.5)*canvas.width*0.6,
+      y: cy + (Math.random()-0.5)*canvas.height*0.6,
+      vx: Math.cos(angle)*speed,
+      vy: Math.sin(angle)*speed - 0.25,
+      ax: (Math.random()-0.5)*0.008,
+      ay: -0.005 - Math.random()*0.01,
+      life,
+      age: 0,
+      size: isGrain ? size*1.8 : size*0.7,
+      rotation: Math.random()*Math.PI*2,
+      rotSpeed: (Math.random()-0.5)*0.05,
+      isGrain,
+      alpha: 0,
+      shimmer: Math.random(),
+    };
+  }
+
+  /* ──────────────────────────────────────────
+     WHEAT STALK SYSTEM
+  ────────────────────────────────────────── */
+  const STALK_COUNT = 22;
+  const stalks = [];
+  function initStalks(){
+    stalks.length = 0;
+    for(let i=0;i<STALK_COUNT;i++){
+      const x = (i/(STALK_COUNT-1)) * canvas.width;
+      stalks.push({
+        x,
+        baseH: canvas.height * (0.55 + Math.random()*0.15),
+        segCount: 5 + Math.floor(Math.random()*4),
+        sway: 0.02 + Math.random()*0.04,
+        phase: Math.random()*Math.PI*2,
+        speed: 0.4 + Math.random()*0.6,
+        headSize: 14 + Math.random()*12,
+        color1: `hsl(${38+Math.random()*18},${72+Math.random()*20}%,${48+Math.random()*14}%)`,
+        color2: `hsl(${28+Math.random()*14},${60+Math.random()*18}%,${35+Math.random()*10}%)`,
+      });
+    }
+  }
+
+  /* ──────────────────────────────────────────
+     FLOUR STREAM PATHS
+  ────────────────────────────────────────── */
+  const STREAM_COUNT = 6;
+  const streams = [];
+  function initStreams(){
+    streams.length = 0;
+    for(let i=0;i<STREAM_COUNT;i++){
+      streams.push({
+        x: canvas.width*(0.25 + (i/STREAM_COUNT)*0.5),
+        particles: [],
+        timer: 0,
+        interval: 30 + i*15,
+      });
+    }
+  }
+
+  /* ──────────────────────────────────────────
+     PACK GEOMETRY  (CSS-drawn 3D bag)
+  ────────────────────────────────────────── */
+  function drawPack(cx, cy, w, h, angle, alpha, glowStrength){
+    ctx.save();
+    ctx.globalAlpha = alpha;
+    ctx.translate(cx, cy);
+    ctx.rotate(angle);
+
+    const rw = w * 0.5;
+    const rh = h * 0.5;
+
+    // Glow halo
+    if(glowStrength > 0){
+      const glow = ctx.createRadialGradient(0,0,rw*0.3, 0,0,rw*1.8);
+      glow.addColorStop(0, `rgba(232,168,0,${0.22*glowStrength})`);
+      glow.addColorStop(1, 'rgba(232,168,0,0)');
+      ctx.fillStyle = glow;
+      ctx.beginPath();
+      ctx.ellipse(0, rh*0.05, rw*1.8, rh*1.0, 0, 0, Math.PI*2);
+      ctx.fill();
+    }
+
+    // Shadow
+    const shadowG = ctx.createRadialGradient(0,rh*0.92, 0, 0,rh*0.92, rw*1.1);
+    shadowG.addColorStop(0,'rgba(80,30,0,0.55)');
+    shadowG.addColorStop(1,'rgba(80,30,0,0)');
+    ctx.fillStyle = shadowG;
+    ctx.beginPath();
+    ctx.ellipse(0, rh*0.92, rw*1.1, rh*0.12, 0, 0, Math.PI*2);
+    ctx.fill();
+
+    // ─ Right side face (3D depth) ─
+    ctx.beginPath();
+    ctx.moveTo(rw*0.82, -rh*0.78);
+    ctx.lineTo(rw*1.05, -rh*0.65);
+    ctx.lineTo(rw*1.05,  rh*0.75);
+    ctx.lineTo(rw*0.82,  rh*0.88);
+    ctx.closePath();
+    const sideG = ctx.createLinearGradient(rw*0.82, 0, rw*1.05, 0);
+    sideG.addColorStop(0,'#7a3800');
+    sideG.addColorStop(1,'#4a1f00');
+    ctx.fillStyle = sideG;
+    ctx.fill();
+
+    // ─ Main front face ─
+    ctx.beginPath();
+    roundRect(ctx, -rw*0.82, -rh*0.88, rw*1.64, rh*1.76, rw*0.06);
+    const mainG = ctx.createLinearGradient(-rw*0.82, -rh*0.88, rw*0.82, rh*0.88);
+    mainG.addColorStop(0,  '#C0181A');
+    mainG.addColorStop(0.25,'#A01416');
+    mainG.addColorStop(0.6, '#8B0000');
+    mainG.addColorStop(1,  '#5C0000');
+    ctx.fillStyle = mainG;
+    ctx.fill();
+
+    // ─ Highlight sheen ─
+    ctx.beginPath();
+    roundRect(ctx, -rw*0.82, -rh*0.88, rw*1.64, rh*1.76, rw*0.06);
+    const sheen = ctx.createLinearGradient(-rw*0.5, -rh*0.88, rw*0.2, rh*0);
+    sheen.addColorStop(0, 'rgba(255,220,150,0.18)');
+    sheen.addColorStop(0.4,'rgba(255,220,150,0.06)');
+    sheen.addColorStop(1, 'rgba(255,220,150,0)');
+    ctx.fillStyle = sheen;
+    ctx.fill();
+
+    // ─ Gold label band ─
+    ctx.beginPath();
+    roundRect(ctx, -rw*0.72, -rh*0.15, rw*1.44, rh*0.50, rw*0.03);
+    const labelG = ctx.createLinearGradient(0,-rh*0.15, 0, rh*0.35);
+    labelG.addColorStop(0,'#F0C040');
+    labelG.addColorStop(0.5,'#E8A800');
+    labelG.addColorStop(1,'#B8860B');
+    ctx.fillStyle = labelG;
+    ctx.fill();
+
+    // ─ Brand text ─
+    ctx.fillStyle = '#fff';
+    ctx.font = `bold ${w*0.055}px 'Georgia', serif`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.shadowColor = 'rgba(0,0,0,0.4)';
+    ctx.shadowBlur = 4;
+    ctx.fillText('Samriddhi', 0, -rh*0.06);
+    ctx.fillText('Bhog', 0, rh*0.10);
+
+    // ─ "AATA" text ─
+    ctx.shadowBlur = 0;
+    ctx.fillStyle = '#3D1500';
+    ctx.font = `bold ${w*0.10}px 'Georgia', serif`;
+    ctx.fillText('AATA', 0, rh*0.38);
+
+    // ─ Weight text ─
+    ctx.fillStyle = 'rgba(255,255,255,0.75)';
+    ctx.font = `${w*0.048}px 'Helvetica Neue', sans-serif`;
+    ctx.letterSpacing = '2px';
+    ctx.fillText('10 KG NET', 0, rh*0.70);
+
+    // ─ Top seal ─
+    ctx.beginPath();
+    roundRect(ctx, -rw*0.70, -rh*0.92, rw*1.40, rh*0.10, rw*0.025);
+    ctx.fillStyle = '#B8860B';
+    ctx.fill();
+
+    // ─ Bottom fold ─
+    ctx.beginPath();
+    roundRect(ctx, -rw*0.70, rh*0.80, rw*1.40, rh*0.10, rw*0.025);
+    ctx.fillStyle = '#7a3800';
+    ctx.fill();
+
+    // ─ Top edge highlight ─
+    ctx.beginPath();
+    ctx.moveTo(-rw*0.82, -rh*0.82);
+    ctx.lineTo( rw*0.82, -rh*0.82);
+    ctx.strokeStyle = 'rgba(255,220,130,0.35)';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+
+    ctx.restore();
+  }
+
+  function roundRect(c, x, y, w, h, r){
+    c.moveTo(x+r, y);
+    c.lineTo(x+w-r, y);
+    c.quadraticCurveTo(x+w, y, x+w, y+r);
+    c.lineTo(x+w, y+h-r);
+    c.quadraticCurveTo(x+w, y+h, x+w-r, y+h);
+    c.lineTo(x+r, y+h);
+    c.quadraticCurveTo(x, y+h, x, y+h-r);
+    c.lineTo(x, y+r);
+    c.quadraticCurveTo(x, y, x+r, y);
+    c.closePath();
+  }
+
+  /* ──────────────────────────────────────────
+     DRAW WHEAT STALK
+  ────────────────────────────────────────── */
+  function drawStalk(s, t, alpha, fieldAlpha){
+    const W = canvas.width;
+    const H = canvas.height;
+    const swayOffset = Math.sin(t * s.speed + s.phase) * 18;
+    const swayMid    = Math.sin(t * s.speed + s.phase + 0.3) * 10;
+
+    ctx.save();
+    ctx.globalAlpha = alpha * fieldAlpha;
+
+    // Stalk body
+    ctx.beginPath();
+    ctx.moveTo(s.x, H);
+    ctx.bezierCurveTo(
+      s.x + swayMid*0.5, H - s.baseH*0.4,
+      s.x + swayOffset*0.7, H - s.baseH*0.75,
+      s.x + swayOffset, H - s.baseH
+    );
+    ctx.strokeStyle = s.color2;
+    ctx.lineWidth = 2.5;
+    ctx.stroke();
+
+    // Wheat head
+    const hx = s.x + swayOffset;
+    const hy = H - s.baseH;
+    const hs = s.headSize;
+
+    // Golden hour shimmer
+    const shimmerAmt = 0.5 + 0.5*Math.sin(t*1.2 + s.phase);
+
+    for(let i=0; i<7; i++){
+      const gy = hy + (i - 3) * hs*0.22;
+      const gx = hx + (i%2===0 ? -hs*0.28 : hs*0.28);
+      ctx.beginPath();
+      ctx.ellipse(gx, gy, hs*0.18, hs*0.32, (i%2===0?-0.3:0.3) + swayOffset*0.008, 0, Math.PI*2);
+      const gc = ctx.createRadialGradient(gx,gy,0,gx,gy,hs*0.32);
+      gc.addColorStop(0, `rgba(240,192,60,${0.9+shimmerAmt*0.1})`);
+      gc.addColorStop(0.6, s.color1);
+      gc.addColorStop(1, s.color2);
+      ctx.fillStyle = gc;
+      ctx.fill();
+    }
+    // Center grain
+    ctx.beginPath();
+    ctx.ellipse(hx, hy, hs*0.12, hs*0.55, 0, 0, Math.PI*2);
+    ctx.fillStyle = s.color1;
+    ctx.fill();
+
+    ctx.restore();
+  }
+
+  /* ──────────────────────────────────────────
+     DRAW FLOUR STREAM PARTICLE
+  ────────────────────────────────────────── */
+  function drawFlourParticle(p, alpha){
+    ctx.save();
+    ctx.globalAlpha = p.alpha * alpha;
+    ctx.translate(p.x, p.y);
+    ctx.rotate(p.rotation);
+
+    if(p.isGrain){
+      // Wheat grain shape
+      ctx.beginPath();
+      ctx.ellipse(0, 0, p.size*1.4, p.size*0.8, 0, 0, Math.PI*2);
+      const gc = ctx.createRadialGradient(0,0,0,0,0,p.size*1.4);
+      gc.addColorStop(0, 'rgba(240,192,60,0.95)');
+      gc.addColorStop(0.6,'rgba(180,130,30,0.7)');
+      gc.addColorStop(1, 'rgba(120,80,10,0)');
+      ctx.fillStyle = gc;
+      ctx.fill();
+    } else {
+      // Flour particle — soft round blobs
+      const fc = ctx.createRadialGradient(0,0,0,0,0,p.size*2);
+      fc.addColorStop(0, 'rgba(255,248,228,0.9)');
+      fc.addColorStop(0.5,'rgba(240,228,195,0.5)');
+      fc.addColorStop(1, 'rgba(240,220,170,0)');
+      ctx.fillStyle = fc;
+      ctx.beginPath();
+      ctx.arc(0, 0, p.size*2, 0, Math.PI*2);
+      ctx.fill();
+    }
+
+    ctx.restore();
+  }
+
+  /* ──────────────────────────────────────────
+     SKY / BACKGROUND GRADIENTS
+  ────────────────────────────────────────── */
+  function drawBackground(phase){
+    const W = canvas.width;
+    const H = canvas.height;
+
+    // Phase 0–0.3: Wheat field — sunrise gold
+    // Phase 0.3–0.6: Macro / transition — warm amber
+    // Phase 0.6–1.0: Studio product shot — soft marble
+
+    let skyTop, skyMid, skyBot, groundColor;
+
+    if(phase < 0.3){
+      const t = phase / 0.3;
+      skyTop    = lerpColor([20,8,0],[60,20,5], t);
+      skyMid    = lerpColor([140,65,10],[180,100,20], t);
+      skyBot    = lerpColor([220,140,30],[240,180,60], t);
+      groundColor = lerpColor([60,30,5],[80,45,8], t);
+    } else if(phase < 0.6){
+      const t = (phase-0.3)/0.3;
+      skyTop    = lerpColor([60,20,5],[30,18,12], t);
+      skyMid    = lerpColor([180,100,20],[160,90,40], t);
+      skyBot    = lerpColor([240,180,60],[220,185,145], t);
+      groundColor = lerpColor([80,45,8],[200,180,155], t);
+    } else {
+      const t = (phase-0.6)/0.4;
+      skyTop    = lerpColor([30,18,12],[245,238,225], t);
+      skyMid    = lerpColor([160,90,40],[248,242,232], t);
+      skyBot    = lerpColor([220,185,145],[252,248,240], t);
+      groundColor = lerpColor([200,180,155],[240,230,215], t);
+    }
+
+    const bg = ctx.createLinearGradient(0, 0, 0, H);
+    bg.addColorStop(0, `rgb(${skyTop.join(',')})`);
+    bg.addColorStop(0.45, `rgb(${skyMid.join(',')})`);
+    bg.addColorStop(0.75, `rgb(${skyBot.join(',')})`);
+    bg.addColorStop(1, `rgb(${groundColor.join(',')})`);
+    ctx.fillStyle = bg;
+    ctx.fillRect(0, 0, W, H);
+
+    // Sun disc (only in field phase)
+    if(phase < 0.5){
+      const sunAlpha = phase < 0.3 ? clamp(phase/0.1,0,1) : clamp(1-(phase-0.3)/0.2,0,1);
+      const sunY = H * (0.3 - phase * 0.15);
+      const sunX = W * 0.62;
+      const sunR = W * 0.06;
+      if(sunAlpha > 0){
+        const sunG = ctx.createRadialGradient(sunX, sunY, 0, sunX, sunY, sunR*4);
+        sunG.addColorStop(0, `rgba(255,230,120,${sunAlpha*0.9})`);
+        sunG.addColorStop(0.2, `rgba(255,190,60,${sunAlpha*0.5})`);
+        sunG.addColorStop(0.5, `rgba(255,140,20,${sunAlpha*0.2})`);
+        sunG.addColorStop(1, 'rgba(255,120,0,0)');
+        ctx.fillStyle = sunG;
+        ctx.fillRect(0, 0, W, H);
+
+        ctx.beginPath();
+        ctx.arc(sunX, sunY, sunR, 0, Math.PI*2);
+        const disc = ctx.createRadialGradient(sunX,sunY,0,sunX,sunY,sunR);
+        disc.addColorStop(0,'rgba(255,255,200,0.95)');
+        disc.addColorStop(0.6,'rgba(255,220,80,0.8)');
+        disc.addColorStop(1,'rgba(255,180,20,0.4)');
+        ctx.fillStyle = disc;
+        ctx.fill();
+      }
+    }
+
+    // Marble surface (product phase)
+    if(phase > 0.65){
+      const mAlpha = clamp((phase-0.65)/0.2, 0, 1);
+      ctx.globalAlpha = mAlpha;
+      // Marble surface plane
+      const surfaceY = H * 0.72;
+      const mG = ctx.createLinearGradient(0, surfaceY-20, 0, H);
+      mG.addColorStop(0, 'rgba(242,236,226,0.9)');
+      mG.addColorStop(0.3,'rgba(235,226,210,0.95)');
+      mG.addColorStop(1, 'rgba(220,210,195,1.0)');
+      ctx.fillStyle = mG;
+      ctx.fillRect(0, surfaceY-20, W, H-surfaceY+20);
+
+      // Marble veins (subtle)
+      ctx.strokeStyle = 'rgba(200,190,175,0.25)';
+      ctx.lineWidth = 1;
+      for(let i=0;i<6;i++){
+        ctx.beginPath();
+        ctx.moveTo(W*(0.1+i*0.15), surfaceY);
+        ctx.bezierCurveTo(
+          W*(0.15+i*0.15), surfaceY+H*0.05,
+          W*(0.08+i*0.15), surfaceY+H*0.15,
+          W*(0.18+i*0.15), surfaceY+H*0.28
+        );
+        ctx.stroke();
+      }
+
+      // Reflection strip
+      const refG = ctx.createLinearGradient(0, surfaceY-20, 0, surfaceY+30);
+      refG.addColorStop(0,'rgba(255,245,225,0.0)');
+      refG.addColorStop(0.5,'rgba(255,245,225,0.3)');
+      refG.addColorStop(1,'rgba(255,245,225,0.0)');
+      ctx.fillStyle = refG;
+      ctx.fillRect(0, surfaceY-20, W, 50);
+
+      ctx.globalAlpha = 1;
+    }
+  }
+
+  function lerpColor(a, b, t){
+    return [
+      Math.round(lerp(a[0],b[0],t)),
+      Math.round(lerp(a[1],b[1],t)),
+      Math.round(lerp(a[2],b[2],t)),
+    ];
+  }
+
+  /* ──────────────────────────────────────────
+     LENS FLARE
+  ────────────────────────────────────────── */
+  function drawLensFlare(phase){
+    if(phase > 0.45) return;
+    const alpha = phase < 0.2 ? phase/0.2 : clamp(1-(phase-0.25)/0.2,0,1);
+    if(alpha <= 0) return;
+
+    const W = canvas.width;
+    const H = canvas.height;
+    const cx = W * 0.62;
+    const cy = H * (0.3 - phase*0.15);
+
+    ctx.save();
+    ctx.globalAlpha = alpha * 0.4;
+
+    // Primary flare ring
+    const fg = ctx.createRadialGradient(cx,cy, 0, cx,cy, W*0.12);
+    fg.addColorStop(0,'rgba(255,255,200,0.8)');
+    fg.addColorStop(0.4,'rgba(255,220,80,0.3)');
+    fg.addColorStop(1,'rgba(255,180,20,0)');
+    ctx.fillStyle = fg;
+    ctx.fillRect(0,0,W,H);
+
+    // Flare streak horizontal
+    ctx.beginPath();
+    ctx.moveTo(0,cy);
+    ctx.lineTo(W,cy);
+    const sl = ctx.createLinearGradient(0,cy,W,cy);
+    sl.addColorStop(0,'rgba(255,220,80,0)');
+    sl.addColorStop(0.62,'rgba(255,255,180,0.6)');
+    sl.addColorStop(1,'rgba(255,220,80,0)');
+    ctx.strokeStyle = sl;
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    ctx.restore();
+  }
+
+  /* ──────────────────────────────────────────
+     CINEMATIC VIGNETTE
+  ────────────────────────────────────────── */
+  function drawVignette(phase){
+    const W = canvas.width;
+    const H = canvas.height;
+    const strength = phase > 0.7 ? 0.55 : 0.65;
+    const vg = ctx.createRadialGradient(W/2, H/2, H*0.2, W/2, H/2, H*0.85);
+    vg.addColorStop(0,'rgba(0,0,0,0)');
+    vg.addColorStop(1,`rgba(0,0,0,${strength})`);
+    ctx.fillStyle = vg;
+    ctx.fillRect(0,0,W,H);
+  }
+
+  /* ──────────────────────────────────────────
+     DEPTH OF FIELD BLUR OVERLAY
+  ────────────────────────────────────────── */
+  function drawDOF(phase){
+    // Soft blur edges during transition
+    if(phase < 0.2 || phase > 0.85) return;
+    const tIn  = phase < 0.35 ? clamp((phase-0.2)/0.15,0,1) : 1;
+    const tOut = phase > 0.7  ? clamp(1-(phase-0.7)/0.15,0,1) : 1;
+    const alpha = tIn * tOut * 0.35;
+    if(alpha <= 0.01) return;
+
+    const W = canvas.width;
+    const H = canvas.height;
+    // Blur top and bottom strips
+    const topG = ctx.createLinearGradient(0,0,0,H*0.18);
+    topG.addColorStop(0,`rgba(200,160,80,${alpha})`);
+    topG.addColorStop(1,'rgba(200,160,80,0)');
+    ctx.fillStyle = topG;
+    ctx.fillRect(0,0,W,H*0.18);
+
+    const botG = ctx.createLinearGradient(0,H*0.82,0,H);
+    botG.addColorStop(0,'rgba(200,160,80,0)');
+    botG.addColorStop(1,`rgba(160,120,60,${alpha})`);
+    ctx.fillStyle = botG;
+    ctx.fillRect(0,H*0.82,W,H*0.18);
+  }
+
+  /* ──────────────────────────────────────────
+     AMBIENT FLOATING DUST
+  ────────────────────────────────────────── */
+  const dust = [];
+  function initDust(){
+    dust.length = 0;
+    for(let i=0;i<80;i++){
+      dust.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: 0.5 + Math.random()*1.5,
+        speed: 0.1 + Math.random()*0.3,
+        drift: (Math.random()-0.5)*0.15,
+        alpha: 0.1 + Math.random()*0.35,
+        phase: Math.random()*Math.PI*2,
+      });
+    }
+  }
+
+  function updateDust(dt){
+    const W = canvas.width;
+    const H = canvas.height;
+    dust.forEach(d => {
+      d.y -= d.speed * dt * 0.06;
+      d.x += d.drift * dt * 0.06;
+      d.phase += 0.01;
+      d.x += Math.sin(d.phase)*0.3;
+      if(d.y < -10) d.y = H + 5;
+      if(d.x < -10) d.x = W + 5;
+      if(d.x > W+10) d.x = -5;
+    });
+  }
+
+  function drawDust(phase){
+    if(phase < 0.15) return;
+    const visible = clamp((phase-0.15)/0.2,0,1);
+    dust.forEach(d => {
+      ctx.save();
+      ctx.globalAlpha = d.alpha * visible * 0.6;
+      const dg = ctx.createRadialGradient(d.x,d.y,0,d.x,d.y,d.size*3);
+      dg.addColorStop(0,'rgba(255,240,195,0.9)');
+      dg.addColorStop(1,'rgba(255,230,170,0)');
+      ctx.fillStyle = dg;
+      ctx.beginPath();
+      ctx.arc(d.x, d.y, d.size*3, 0, Math.PI*2);
+      ctx.fill();
+      ctx.restore();
+    });
+  }
+
+  /* ──────────────────────────────────────────
+     FLOUR FLOW RIBBON
+  ────────────────────────────────────────── */
+  const ribbonParticles = [];
+  let ribbonTimer = 0;
+
+  function spawnRibbonParticle(cx, cy){
+    const spread = canvas.width * 0.22;
+    ribbonParticles.push({
+      x: cx + (Math.random()-0.5)*spread,
+      y: cy + (Math.random()-0.5)*canvas.height*0.3,
+      vx: (Math.random()-0.5)*0.8,
+      vy: -0.5 - Math.random()*1.5,
+      size: 3 + Math.random()*8,
+      life: 2000 + Math.random()*2500,
+      age: 0,
+      alpha: 0,
+      twist: (Math.random()-0.5)*0.04,
+    });
+  }
+
+  function updateRibbon(dt, cx, cy, active){
+    ribbonTimer += dt;
+    if(active && ribbonTimer > 40){
+      ribbonTimer = 0;
+      for(let i=0;i<3;i++) spawnRibbonParticle(cx, cy);
+    }
+    for(let i = ribbonParticles.length-1; i>=0; i--){
+      const p = ribbonParticles[i];
+      p.age += dt;
+      if(p.age >= p.life){ ribbonParticles.splice(i,1); continue; }
+      const t = p.age/p.life;
+      p.alpha = t < 0.15 ? t/0.15 : t > 0.75 ? (1-t)/0.25 : 1;
+      p.x += p.vx;
+      p.y += p.vy;
+      p.vy += 0.02;  // gravity
+      p.vx += p.twist;
+      p.size *= 0.997;
+    }
+  }
+
+  function drawRibbon(alpha){
+    ribbonParticles.forEach(p => {
+      ctx.save();
+      ctx.globalAlpha = p.alpha * alpha * 0.8;
+      const rg = ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,p.size*1.5);
+      rg.addColorStop(0,'rgba(255,248,228,0.95)');
+      rg.addColorStop(0.5,'rgba(248,232,195,0.6)');
+      rg.addColorStop(1,'rgba(240,218,175,0)');
+      ctx.fillStyle = rg;
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,p.size*1.5,0,Math.PI*2);
+      ctx.fill();
+      ctx.restore();
+    });
+  }
+
+  /* ──────────────────────────────────────────
+     CINEMATIC BARS (letterbox)
+  ────────────────────────────────────────── */
+  function drawCinematicBars(phase){
+    const W = canvas.width;
+    const H = canvas.height;
+    // Animate bars in at start, out at product reveal
+    const barH = H * 0.07;
+    let barAlpha;
+    if(phase < 0.05) barAlpha = phase/0.05;
+    else if(phase < 0.75) barAlpha = 1;
+    else barAlpha = clamp(1-(phase-0.75)/0.15,0,1);
+
+    ctx.save();
+    ctx.globalAlpha = barAlpha;
+    ctx.fillStyle = '#000';
+    ctx.fillRect(0,0,W,barH);
+    ctx.fillRect(0,H-barH,W,barH);
+    ctx.restore();
+  }
+
+  /* ──────────────────────────────────────────
+     MAIN ANIMATION LOOP
+  ────────────────────────────────────────── */
+  initStalks();
+  initStreams();
+  initDust();
+
+  let lastTime = 0;
+  let packAngle = 0;
+
+  function frame(ts){
+    if(!startTime) startTime = ts;
+    const elapsed = ts - startTime;
+    const phase   = (elapsed % LOOP_DURATION) / LOOP_DURATION; // 0→1 looping
+    const dt      = ts - lastTime;
+    lastTime = ts;
+
+    const W = canvas.width;
+    const H = canvas.height;
+    const cx = W * 0.62;
+    const cy = H * 0.52;
+
+    // ── Clear ──
+    ctx.clearRect(0, 0, W, H);
+
+    // ── Background ──
+    drawBackground(phase);
+
+    // ── Field phase (0 → 0.45) ──
+    const fieldAlpha = phase < 0.3
+      ? clamp(phase/0.08, 0, 1)
+      : clamp(1-(phase-0.3)/0.18, 0, 1);
+
+    if(fieldAlpha > 0.01){
+      stalks.forEach(s => drawStalk(s, elapsed*0.001, fieldAlpha, 1));
+    }
+
+    // ── Sun & lens flare ──
+    drawLensFlare(phase);
+
+    // ── Ambient dust ──
+    updateDust(dt);
+    drawDust(phase);
+
+    // ── Transition / flour cloud (0.25 → 0.70) ──
+    const flourAlpha = phase > 0.25 && phase < 0.70
+      ? clamp((phase-0.25)/0.12,0,1) * clamp(1-(phase-0.55)/0.15,0,1)
+      : 0;
+
+    const ribbonActive = phase > 0.28 && phase < 0.65;
+    updateRibbon(dt, cx, cy*0.85, ribbonActive);
+    if(flourAlpha > 0.01) drawRibbon(flourAlpha);
+
+    // ── Macro grain burst (0.28 → 0.52) ──
+    const grainAlpha = phase > 0.28 && phase < 0.52
+      ? clamp((phase-0.28)/0.08,0,1) * clamp(1-(phase-0.42)/0.1,0,1)
+      : 0;
+
+    if(grainAlpha > 0.01){
+      // Spawn grain particles
+      if(Math.random() < 0.4){
+        const p = spawnParticle(phase, cx, cy*0.78);
+        if(particles.length < MAX_PARTICLES) particles.push(p);
+      }
+    }
+
+    // Update + draw all particles
+    for(let i=particles.length-1; i>=0; i--){
+      const p = particles[i];
+      p.age += dt;
+      if(p.age >= p.life){ particles.splice(i,1); continue; }
+      const t = p.age/p.life;
+      p.alpha = t<0.1 ? t/0.1 : t>0.7 ? (1-t)/0.3 : 1;
+      p.alpha *= (grainAlpha + flourAlpha*0.5);
+      p.x += p.vx;
+      p.y += p.vy;
+      p.vx += p.ax;
+      p.vy += p.ay;
+      p.rotation += p.rotSpeed;
+      drawFlourParticle(p, 1);
+    }
+
+    // ── Product pack (0.58 → loop end → 0.1 next cycle) ──
+    let packAlphaVal;
+    if(phase >= 0.58 && phase <= 1.0){
+      packAlphaVal = clamp((phase-0.58)/0.12, 0, 1);
+    } else if(phase <= 0.08){
+      packAlphaVal = clamp(1-phase/0.08, 0, 1);
+    } else {
+      packAlphaVal = 0;
+    }
+
+    if(packAlphaVal > 0.01){
+      packAngle += dt * 0.0004; // gentle rotation
+      const packW = Math.min(W, H) * 0.38;
+      const packH = packW * 1.55;
+      const packX = cx;
+      const packY = H * 0.56;
+
+      // Pack ground reflection
+      ctx.save();
+      ctx.globalAlpha = packAlphaVal * 0.18;
+      ctx.scale(1, -0.18);
+      drawPack(packX, -(packY + packH*0.46) - (H - (packY + packH*0.46))*2 + H, packW, packH, packAngle, 1, 0);
+      ctx.restore();
+
+      // Actual pack
+      drawPack(packX, packY, packW, packH, packAngle, packAlphaVal, packAlphaVal);
+
+      // Studio light rim
+      ctx.save();
+      ctx.globalAlpha = packAlphaVal * 0.3;
+      const rimG = ctx.createRadialGradient(packX-packW*0.7, packY-packH*0.6, 0, packX, packY, packW*2.2);
+      rimG.addColorStop(0,'rgba(255,230,140,0.6)');
+      rimG.addColorStop(1,'rgba(255,200,80,0)');
+      ctx.fillStyle = rimG;
+      ctx.beginPath();
+      ctx.ellipse(packX, packY, packW*2.2, packH*1.1, 0, 0, Math.PI*2);
+      ctx.fill();
+      ctx.restore();
+    }
+
+    // ── Depth of field overlay ──
+    drawDOF(phase);
+
+    // ── Vignette ──
+    drawVignette(phase);
+
+    // ── Cinematic bars ──
+    drawCinematicBars(phase);
+
+    requestAnimationFrame(frame);
+  }
+
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
