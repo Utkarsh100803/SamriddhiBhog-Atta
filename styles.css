@@ -264,7 +264,28 @@ h4{font-size:1.05rem}
 .sub-card--featured .sub-card-footer .btn-red:hover{background:var(--red-dark);border-color:var(--red-dark)}
 .subscribe-note{text-align:center;margin-top:2rem;font-size:.85rem;color:var(--text-muted)}
 
-/* ══ Comparison ══ */
+/* ══ Atta Comparison Image Section ══ */
+.atta-comparison-section{padding:70px 0;background:var(--cream-dark)}
+.atta-comparison-img{width:100%;max-width:1100px;height:auto;display:block;margin:0 auto;border-radius:12px;box-shadow:0 12px 50px rgba(92,45,10,.15)}
+
+/* ══ Why Samriddhi Bhog Atta ══ */
+.why-atta-section{padding:90px 0;background:var(--cream)}
+.why-atta-header{text-align:center;margin-bottom:3.5rem}
+.why-atta-ornament{font-family:var(--font-heading);font-size:.75rem;letter-spacing:.2em;color:var(--gold-dark);margin-bottom:1rem}
+.why-atta-title{font-family:var(--font-display);font-size:clamp(2rem,4vw,2.8rem);font-weight:600;color:var(--text-dark);margin-bottom:.75rem}
+.text-gold-dark{color:var(--gold-dark)}
+.why-atta-sub{font-size:1.05rem;color:var(--text-muted);font-style:italic}
+.why-atta-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.75rem}
+.why-atta-card{background:var(--white);border:1px solid var(--border-light);border-radius:10px;overflow:hidden;text-align:center;box-shadow:var(--shadow-sm);transition:transform .3s,box-shadow .3s}
+.why-atta-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-md)}
+.why-atta-img-wrap{position:relative}
+.why-atta-img{height:190px;width:100%}
+.why-atta-icon-circle{position:absolute;bottom:-20px;left:50%;transform:translateX(-50%);width:44px;height:44px;border-radius:50%;background:var(--white);border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1.1rem;box-shadow:var(--shadow-sm)}
+.why-atta-card h4{font-family:var(--font-heading);font-size:1rem;font-weight:700;color:var(--brown);margin:2rem 1.25rem .5rem;line-height:1.35}
+.why-atta-card p{font-size:.88rem;color:var(--text-muted);padding:0 1.25rem 1.5rem;line-height:1.65}
+.why-atta-footer-ornament{text-align:center;margin-top:3rem;font-family:var(--font-heading);font-size:.75rem;letter-spacing:.2em;color:var(--gold-dark)}
+
+/* ══ Comparison Section (legacy, hidden) ══ */
 .comparison-section{padding:100px 0;background:var(--maroon);color:#fff}
 .comparison-section .section-label{color:var(--gold)}
 .comparison-section .section-label::before{background:var(--gold)}
@@ -491,6 +512,9 @@ h4{font-size:1.05rem}
   :root{--nav-h:64px}
   .section{padding:80px 0}
 
+  /* New sections */
+  .why-atta-grid{grid-template-columns:repeat(2,1fr)}
+
   /* Hero */
   .hero:not(.hero--video){grid-template-columns:1fr;min-height:auto}
   .hero-left{padding:3rem 5%;max-width:none}
@@ -561,6 +585,7 @@ h4{font-size:1.05rem}
 
   /* Cards & grids */
   .products-grid,.why-grid,.recipes-grid{grid-template-columns:1fr}
+  .why-atta-grid{grid-template-columns:1fr}
   .why-card{padding:1.5rem}
   .infra-grid{grid-template-columns:repeat(2,1fr)}
   .infra-stats{grid-template-columns:repeat(2,1fr)}
