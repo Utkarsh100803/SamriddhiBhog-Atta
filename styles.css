@@ -264,9 +264,9 @@ h4{font-size:1.05rem}
 .sub-card--featured .sub-card-footer .btn-red:hover{background:var(--red-dark);border-color:var(--red-dark)}
 .subscribe-note{text-align:center;margin-top:2rem;font-size:.85rem;color:var(--text-muted)}
 
-/* ══ Atta Comparison Image Section ══ */
-.atta-comparison-section{padding:70px 0;background:var(--cream-dark)}
-.atta-comparison-img{width:100%;max-width:1100px;height:auto;display:block;margin:0 auto;border-radius:12px;box-shadow:0 12px 50px rgba(92,45,10,.15)}
+/* ══ Atta Comparison — full-bleed section ══ */
+.atta-comparison-section{display:block;line-height:0;background:#1a0d05;overflow:hidden}
+.atta-comparison-img{width:100%;height:auto;display:block;object-fit:cover}
 
 /* ══ Why Samriddhi Bhog Atta ══ */
 .why-atta-section{padding:90px 0;background:var(--cream)}
