@@ -275,9 +275,10 @@ h4{font-size:1.05rem}
 .why-atta-title{font-family:var(--font-display);font-size:clamp(2rem,4vw,2.8rem);font-weight:600;color:var(--text-dark);margin-bottom:.75rem}
 .text-gold-dark{color:var(--gold-dark)}
 .why-atta-sub{font-size:1.05rem;color:var(--text-muted);font-style:italic}
-.why-atta-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.75rem}
-.why-atta-card{background:var(--white);border:1px solid var(--border-light);border-radius:10px;overflow:hidden;text-align:center;box-shadow:var(--shadow-sm);transition:transform .3s,box-shadow .3s}
-.why-atta-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-md)}
+.why-atta-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.why-atta-card{border-radius:14px;overflow:hidden;box-shadow:0 6px 28px rgba(92,45,10,.13);transition:transform .3s,box-shadow .3s;line-height:0}
+.why-atta-card:hover{transform:translateY(-6px);box-shadow:0 14px 44px rgba(92,45,10,.2)}
+.why-atta-card-img{width:100%;height:auto;display:block;border-radius:0}
 .why-atta-img-wrap{position:relative}
 .why-atta-img{height:190px;width:100%}
 .why-atta-icon-circle{position:absolute;bottom:-20px;left:50%;transform:translateX(-50%);width:44px;height:44px;border-radius:50%;background:var(--white);border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1.1rem;box-shadow:var(--shadow-sm)}
