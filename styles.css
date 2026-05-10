@@ -275,10 +275,26 @@ h4{font-size:1.05rem}
 .why-atta-title{font-family:var(--font-display);font-size:clamp(2rem,4vw,2.8rem);font-weight:600;color:var(--text-dark);margin-bottom:.75rem}
 .text-gold-dark{color:var(--gold-dark)}
 .why-atta-sub{font-size:1.05rem;color:var(--text-muted);font-style:italic}
-.why-atta-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
-.why-atta-card{border-radius:14px;overflow:hidden;box-shadow:0 6px 28px rgba(92,45,10,.13);transition:transform .3s,box-shadow .3s;line-height:0}
+.why-atta-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.75rem}
+
+/* Card */
+.why-atta-card{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 4px 24px rgba(92,45,10,.12);transition:transform .3s,box-shadow .3s;display:flex;flex-direction:column}
 .why-atta-card:hover{transform:translateY(-6px);box-shadow:0 14px 44px rgba(92,45,10,.2)}
-.why-atta-card-img{width:100%;height:auto;display:block;border-radius:0}
+
+/* Photo area */
+.wac-photo-wrap{position:relative;flex-shrink:0}
+.wac-photo{width:100%;height:220px;object-fit:cover;display:block}
+
+/* Icon circle — sits at bottom edge of photo, centred */
+.wac-icon{position:absolute;bottom:-22px;left:50%;transform:translateX(-50%);width:46px;height:46px;border-radius:50%;background:var(--maroon);border:3px solid #fff;display:flex;align-items:center;justify-content:center;font-size:1.15rem;line-height:1;box-shadow:0 3px 10px rgba(0,0,0,.18);z-index:1}
+
+/* Text area */
+.wac-body{padding:2.25rem 1.5rem 1.75rem;text-align:center;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-start}
+.wac-body h4{font-family:var(--font-heading);font-size:1.05rem;font-weight:700;color:var(--brown,#4A2800);margin:0 0 .65rem;line-height:1.35}
+.wac-body p{font-size:.88rem;color:var(--text-muted,#8a7060);line-height:1.7;margin:0}
+
+/* Legacy helpers — kept for other pages */
+.why-atta-card-img{width:100%;height:auto;display:block}
 .why-atta-img-wrap{position:relative}
 .why-atta-img{height:190px;width:100%}
 .why-atta-icon-circle{position:absolute;bottom:-20px;left:50%;transform:translateX(-50%);width:44px;height:44px;border-radius:50%;background:var(--white);border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1.1rem;box-shadow:var(--shadow-sm)}
@@ -349,6 +365,7 @@ h4{font-size:1.05rem}
 .about-photo-placeholder{height:400px;background:var(--cream-deeper);border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:var(--font-heading);font-size:.8rem;color:var(--text-muted);letter-spacing:.1em;text-transform:uppercase}
 .about-stats{display:flex;gap:2rem;margin:2rem 0}
 .about-stat-num{font-family:var(--font-display);font-size:2.8rem;font-weight:700;color:var(--red-dark);line-height:1.1}
+.about-stat-unit{font-size:1.6rem;font-weight:700;vertical-align:baseline;margin-left:.05em}
 .about-stat-label{font-family:var(--font-heading);font-size:1rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--text-muted);margin-top:.2rem}
 
 /* ══ Video Section ══ */
@@ -515,6 +532,7 @@ h4{font-size:1.05rem}
 
   /* New sections */
   .why-atta-grid{grid-template-columns:repeat(2,1fr)}
+  .wac-photo{height:200px}
 
   /* Hero */
   .hero:not(.hero--video){grid-template-columns:1fr;min-height:auto}
@@ -587,6 +605,7 @@ h4{font-size:1.05rem}
   /* Cards & grids */
   .products-grid,.why-grid,.recipes-grid{grid-template-columns:1fr}
   .why-atta-grid{grid-template-columns:1fr}
+  .wac-photo{height:220px}
   .why-card{padding:1.5rem}
   .infra-grid{grid-template-columns:repeat(2,1fr)}
   .infra-stats{grid-template-columns:repeat(2,1fr)}
