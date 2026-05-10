@@ -390,9 +390,10 @@ h4{font-size:1.05rem}
 
 /* ══ Infrastructure Teaser ══ */
 .infra-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:3rem}
-.infra-photo{min-height:180px;background:var(--cream-deeper);border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:var(--font-heading);font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);transition:transform .3s;overflow:hidden;padding:0}
+.infra-photo{position:relative;border-radius:8px;overflow:hidden;transition:transform .3s;background:var(--cream-deeper)}
 .infra-photo:hover{transform:scale(1.02)}
-.infra-img{width:100%;height:auto;display:block;border-radius:6px}
+.infra-img{width:100%;height:260px;object-fit:cover;display:block}
+.infra-label{position:absolute;bottom:0;left:0;right:0;padding:.6rem 1rem;background:linear-gradient(to top,rgba(58,10,11,.75),transparent);font-family:var(--font-heading);font-size:.68rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#fff}
 
 /* ══ Certifications Bar ══ */
 .cert-bar{background:var(--maroon-dark);padding:16px 0}
