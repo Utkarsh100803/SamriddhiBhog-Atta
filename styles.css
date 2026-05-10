@@ -433,16 +433,25 @@ h4{font-size:1.05rem}
 .contact-cta p{color:rgba(255,255,255,.8)}
 
 /* ══ Footer ══ */
-.footer{background:var(--cream);color:var(--text-body);padding:60px 0 0}
-.footer-inner{width:90%;max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:3rem;padding-bottom:3rem}
-.footer-brand h3{font-family:var(--font-display);font-size:1.5rem;color:var(--maroon-dark);margin-bottom:.5rem}
-.footer-brand .tagline{font-style:italic;font-size:.92rem;color:rgba(58,42,26,.55);margin-bottom:1.5rem}
-.footer-brand .location{font-size:.85rem;color:rgba(58,42,26,.5);margin-top:1rem}
-.footer-col h4{font-family:var(--font-heading);font-size:.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--red);margin-bottom:1.25rem}
-.footer-col a{display:block;padding:.4rem 0;font-size:.9rem;color:rgba(58,42,26,.7);transition:color .2s}
-.footer-col a:hover{color:var(--red)}
-.footer-bottom{border-top:1px solid rgba(58,42,26,.15);padding:1.25rem 0}
-.footer-bottom-inner{width:90%;max-width:var(--max-w);margin:0 auto;display:flex;justify-content:space-between;align-items:center;font-size:.8rem;color:rgba(58,42,26,.45)}
+.footer{background:var(--maroon-dark);color:rgba(255,249,240,.75);padding:72px 0 0}
+.footer-inner{width:90%;max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:4rem;padding-bottom:56px}
+
+.footer-brand h3{font-family:var(--font-display);font-size:2rem;color:#fff;margin-bottom:.4rem;letter-spacing:-.01em}
+.footer-brand .tagline{font-style:italic;font-size:.95rem;color:rgba(255,249,240,.5);margin-bottom:1.75rem;line-height:1.5}
+.footer-brand .btn-whatsapp{background:rgba(255,249,240,.08);border:1px solid rgba(255,249,240,.2);color:rgba(255,249,240,.9);font-size:.82rem;padding:.75rem 1.6rem;border-radius:6px;display:inline-flex;align-items:center;gap:.5rem;transition:background .2s}
+.footer-brand .btn-whatsapp:hover{background:rgba(255,249,240,.14)}
+.footer-brand .location{font-size:.82rem;color:rgba(255,249,240,.35);margin-top:1.25rem;line-height:1.7}
+
+.footer-col h4{font-family:var(--font-heading);font-size:.68rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;padding-bottom:.6rem;border-bottom:1px solid rgba(255,249,240,.08)}
+.footer-col a{display:block;padding:.45rem 0;font-size:.92rem;color:rgba(255,249,240,.55);transition:color .2s}
+.footer-col a:hover{color:#fff}
+
+.footer-divider{width:90%;max-width:var(--max-w);margin:0 auto;border:none;border-top:1px solid rgba(255,249,240,.08)}
+
+.footer-bottom{padding:1.5rem 0}
+.footer-bottom-inner{width:90%;max-width:var(--max-w);margin:0 auto;display:flex;justify-content:space-between;align-items:center;font-size:.78rem;color:rgba(255,249,240,.3)}
+.footer-bottom-inner a{color:rgba(255,249,240,.3);transition:color .2s}
+.footer-bottom-inner a:hover{color:rgba(255,249,240,.65)}
 
 /* ══ WhatsApp Float ══ */
 .whatsapp-float{position:fixed;bottom:24px;right:24px;z-index:999}
@@ -609,7 +618,7 @@ h4{font-size:1.05rem}
   .video-grid{grid-template-columns:1fr}
 
   /* Footer */
-  .footer-inner{grid-template-columns:1fr 1fr}
+  .footer-inner{grid-template-columns:1fr 1fr;gap:2.5rem}
 
   /* Timeline */
   .timeline::before{left:20px}
@@ -671,7 +680,7 @@ h4{font-size:1.05rem}
   /* Process */
   .process-row-1,.process-row-2{grid-template-columns:repeat(2,1fr)}
   .process-row-1::after,.process-row-2::after,.process-z-connector{display:none}
-  .pn--col2,.pn--col3,.pn--col4{grid-column:auto}
+  .pn--col2,.pn--col3,.pn--col4{grid-column:auto;grid-row:auto}
   .pn-circle{width:76px;height:76px}
   .pn-svg{width:30px;height:30px}
 
@@ -747,11 +756,13 @@ h4{font-size:1.05rem}
 
   /* Grids → single column */
   .infra-grid,.infra-stats,.infra-gallery{grid-template-columns:1fr}
-  .footer-inner{grid-template-columns:1fr;gap:1.5rem}
+  .footer-inner{grid-template-columns:1fr;gap:2rem}
+  .footer-brand{padding-bottom:1.5rem;border-bottom:1px solid rgba(255,249,240,.08)}
   .cert-bar-inner{flex-direction:column;align-items:flex-start;gap:.6rem}
 
   /* Process → single column */
   .process-row-1,.process-row-2{grid-template-columns:1fr}
+  .pn--col2,.pn--col3,.pn--col4{grid-column:auto;grid-row:auto}
   .pn{padding-bottom:1.75rem}
   .process-callout{flex-direction:column;text-align:center}
 
