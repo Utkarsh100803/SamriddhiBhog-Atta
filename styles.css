@@ -322,31 +322,64 @@ h4{font-size:1.05rem}
 .comparison-vs{display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:2.5rem;font-weight:700;color:rgba(255,255,255,.2);writing-mode:vertical-lr;letter-spacing:.2em}
 
 /* ══ Process ══ */
-/* ══ Process ══ */
-.process-section{padding:100px 0;background:var(--maroon-dark)}
+/* ══ Process — Snake / Z layout ══ */
+.process-section{padding:100px 0;background:var(--cream)}
 
 .process-header{text-align:center;margin-bottom:4rem}
-.process-eyebrow{display:inline-block;font-family:var(--font-heading);font-size:.7rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem}
-.process-title{font-family:var(--font-display);font-size:clamp(2rem,4vw,2.8rem);color:#fff;margin-bottom:.75rem}
-.process-sub{font-size:1rem;color:rgba(255,249,240,.55);font-style:italic}
+.process-eyebrow{display:flex;align-items:center;justify-content:center;gap:.75rem;font-family:var(--font-heading);font-size:.7rem;font-weight:700;letter-spacing:.22em;color:var(--gold-dark);text-transform:uppercase;margin-bottom:1rem}
+.peh-rule{display:inline-block;width:36px;height:1px;background:var(--gold-dark);opacity:.55}
+.process-title{font-family:var(--font-display);font-size:clamp(2.2rem,5vw,3.4rem);font-weight:700;color:var(--maroon-dark);margin-bottom:.65rem}
+.process-sub{font-size:1rem;color:var(--text-muted);font-style:italic}
+.process-ornament{color:var(--gold-dark);font-size:1.2rem;margin-top:.6rem}
 
-.process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid rgba(255,249,240,.1);border-radius:12px;overflow:hidden}
+/* ── Snake track ── */
+.process-track{position:relative}
 
-.process-item{padding:2rem 1.75rem;border-right:1px solid rgba(255,249,240,.1);border-bottom:1px solid rgba(255,249,240,.1);transition:background .3s}
-.process-item:hover{background:rgba(255,249,240,.05)}
-/* Remove right border on last column items */
-.process-item:nth-child(4n){border-right:none}
-/* Remove bottom border on last row */
-.process-item:nth-last-child(-n+3){border-bottom:none}
+/* Row 1: 4-col grid, LTR */
+.process-row-1{display:grid;grid-template-columns:repeat(4,1fr);position:relative}
+/* Horizontal dashed connector — spans from center of col-1 to center of col-4 */
+.process-row-1::after{content:'';position:absolute;top:45px;left:calc(100%/8);right:calc(100%/8);border-top:1.5px dashed rgba(184,134,11,.35);z-index:0}
 
-.process-num{font-family:var(--font-display);font-size:2.4rem;font-weight:700;color:var(--gold);opacity:.5;line-height:1;display:block;margin-bottom:.9rem}
-.process-divider{width:28px;height:2px;background:var(--gold);margin-bottom:1rem;opacity:.6}
-.process-name{font-family:var(--font-heading);font-size:.95rem;font-weight:700;color:#fff;margin-bottom:.5rem;line-height:1.4}
-.process-desc{font-size:.82rem;color:rgba(255,249,240,.5);line-height:1.7;margin:0}
+/* Z-bend: vertical line on right side linking rows */
+.process-z-connector{position:relative;height:60px}
+.process-z-connector::after{content:'';position:absolute;right:calc(100%/8 - 1px);top:0;bottom:0;border-right:1.5px dashed rgba(184,134,11,.35)}
 
-.process-cta{text-align:center;margin-top:3.5rem}
-.process-link{font-family:var(--font-heading);font-size:.82rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);border-bottom:1px solid rgba(232,168,0,.4);padding-bottom:2px;transition:color .2s,border-color .2s}
-.process-link:hover{color:var(--gold-light);border-color:var(--gold-light)}
+/* Row 2: 4-col grid, items placed in cols 4, 3, 2 (snake right→left) */
+.process-row-2{display:grid;grid-template-columns:repeat(4,1fr);position:relative}
+/* Connector from col-2 center to col-4 center */
+.process-row-2::after{content:'';position:absolute;top:45px;left:calc(100%*3/8);right:calc(100%/8);border-top:1.5px dashed rgba(184,134,11,.35);z-index:0}
+
+/* Column placement for row-2 items */
+.pn--col4{grid-column:4}
+.pn--col3{grid-column:3}
+.pn--col2{grid-column:2}
+
+/* ── Individual step node ── */
+.pn{display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 .5rem 2.5rem;position:relative;z-index:1}
+
+/* Circle */
+.pn-circle{width:90px;height:90px;border-radius:50%;background:#fff;border:1.5px solid rgba(184,134,11,.28);display:flex;align-items:center;justify-content:center;position:relative;margin-bottom:1.25rem;box-shadow:0 4px 18px rgba(92,45,10,.07);transition:transform .3s,box-shadow .3s}
+.pn:hover .pn-circle{transform:translateY(-4px);box-shadow:0 10px 30px rgba(92,45,10,.13)}
+
+/* Number badge */
+.pn-num{position:absolute;top:-7px;right:-7px;width:26px;height:26px;border-radius:50%;background:var(--gold);color:#fff;font-family:var(--font-heading);font-size:.62rem;font-weight:700;display:flex;align-items:center;justify-content:center;letter-spacing:.02em;box-shadow:0 2px 6px rgba(184,134,11,.4)}
+
+/* SVG icon */
+.pn-svg{width:36px;height:36px;color:var(--gold-dark);stroke:var(--gold-dark)}
+
+/* Text */
+.pn h4{font-family:var(--font-heading);font-size:.95rem;font-weight:700;color:var(--maroon-dark);margin-bottom:.5rem;line-height:1.35}
+.pn p{font-size:.8rem;color:var(--text-muted);line-height:1.7;max-width:138px;margin:0 auto}
+
+/* ── Callout box ── */
+.process-callout{display:flex;align-items:center;gap:1rem;margin:3rem auto 0;padding:1.25rem 2rem;background:rgba(184,134,11,.07);border:1px solid rgba(184,134,11,.22);border-radius:10px;max-width:500px}
+.pc-icon{width:28px;height:28px;color:var(--gold-dark);flex-shrink:0}
+.process-callout p{font-size:.9rem;color:var(--text-body);line-height:1.5;margin:0}
+.process-callout strong{color:var(--maroon-dark)}
+
+.process-cta{text-align:center;margin-top:2rem}
+.process-link{font-family:var(--font-heading);font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-dark);border-bottom:1px solid rgba(184,134,11,.35);padding-bottom:2px;transition:color .2s,border-color .2s}
+.process-link:hover{color:var(--gold);border-color:var(--gold)}
 
 /* ══ B2B ══ */
 .b2b-section{padding:100px 0;background:var(--cream)}
@@ -552,11 +585,9 @@ h4{font-size:1.05rem}
   .wac-photo{height:200px}
 
   /* Process grid */
-  .process-grid{grid-template-columns:repeat(2,1fr)}
-  .process-item:nth-child(4n){border-right:1px solid rgba(255,249,240,.1)}
-  .process-item:nth-child(2n){border-right:none}
-  .process-item:nth-last-child(-n+3){border-bottom:1px solid rgba(255,249,240,.1)}
-  .process-item:nth-last-child(-n+2){border-bottom:none}
+  .process-row-1,.process-row-2{grid-template-columns:repeat(2,1fr)}
+  .process-row-1::after,.process-row-2::after,.process-z-connector{display:none}
+  .pn--col2,.pn--col3,.pn--col4{grid-column:auto}
 
   /* Hero */
   .hero:not(.hero--video){grid-template-columns:1fr;min-height:auto}
@@ -638,11 +669,11 @@ h4{font-size:1.05rem}
   .subscribe-grid{grid-template-columns:1fr}
 
   /* Process */
-  .process-grid{grid-template-columns:repeat(2,1fr)}
-  .process-item:nth-child(4n){border-right:1px solid rgba(255,249,240,.1)}
-  .process-item:nth-child(2n){border-right:none}
-  .process-item:nth-last-child(-n+3){border-bottom:1px solid rgba(255,249,240,.1)}
-  .process-item:nth-last-child(-n+1){border-bottom:none}
+  .process-row-1,.process-row-2{grid-template-columns:repeat(2,1fr)}
+  .process-row-1::after,.process-row-2::after,.process-z-connector{display:none}
+  .pn--col2,.pn--col3,.pn--col4{grid-column:auto}
+  .pn-circle{width:76px;height:76px}
+  .pn-svg{width:30px;height:30px}
 
   /* About */
   .about-stats{flex-direction:row;flex-wrap:wrap;gap:1.25rem}
@@ -719,11 +750,10 @@ h4{font-size:1.05rem}
   .footer-inner{grid-template-columns:1fr;gap:1.5rem}
   .cert-bar-inner{flex-direction:column;align-items:flex-start;gap:.6rem}
 
-  /* Process → single column on small phones */
-  .process-grid{grid-template-columns:1fr;border-radius:8px}
-  .process-item{border-right:none!important;border-bottom:1px solid rgba(255,249,240,.1)!important}
-  .process-item:last-child{border-bottom:none!important}
-  .process-num{font-size:1.8rem}
+  /* Process → single column */
+  .process-row-1,.process-row-2{grid-template-columns:1fr}
+  .pn{padding-bottom:1.75rem}
+  .process-callout{flex-direction:column;text-align:center}
 
   /* About stats — stack */
   .about-stats{flex-direction:column;gap:1rem}
