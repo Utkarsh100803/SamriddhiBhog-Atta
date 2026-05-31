@@ -494,7 +494,7 @@ h4{font-size:1.05rem}
 .contact-form input,.contact-form select,.contact-form textarea{width:100%;padding:.85rem 1rem;font-family:var(--font-body);font-size:.92rem;border:1px solid var(--border);border-radius:4px;background:var(--white);color:var(--text-dark);margin-bottom:1.25rem;transition:border-color .2s}
 .contact-form input:focus,.contact-form select:focus,.contact-form textarea:focus{outline:none;border-color:var(--red)}
 .contact-form textarea{height:140px;resize:vertical}
-.contact-info-card{background:var(--cream-dark);border:1px solid var(--border-light);border-radius:8px;padding:2rem;margin-bottom:1.5rem}
+.contact-info-card{background:#fff;border:1px solid var(--border-light);border-radius:12px;padding:2rem;margin-bottom:1.5rem;box-shadow:0 2px 12px rgba(92,45,10,.06)}
 .contact-info-card h4{margin-bottom:1rem}
 .contact-info-item{display:flex;align-items:flex-start;gap:.75rem;padding:.6rem 0;font-size:.92rem}
 .contact-info-item .icon{color:var(--red);font-size:1.1rem;margin-top:2px}
