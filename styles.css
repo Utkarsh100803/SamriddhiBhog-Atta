@@ -1,10 +1,10 @@
 /* ====================================================
    SAMRIDDHI BHOG — Premium Indian Flour Brand
    Colors: Deep Red · Gold · Warm Cream · Brown
-   Fonts: Spectral (display) · Josefin Sans (headings + body)
+   Fonts: Spectral (display) · Poppins (headings + body)
    ==================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Josefin+Sans:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Poppins:wght@300;400;500;600;700&display=swap');
 
 :root {
   --red:           #C0181A;
@@ -36,8 +36,8 @@
   --border-light:  #F0E6D4;
 
   --font-display:  'Spectral', Georgia, serif;
-  --font-heading:  'Josefin Sans', 'Helvetica Neue', Arial, sans-serif;
-  --font-body:     'Josefin Sans', 'Helvetica Neue', Arial, sans-serif;
+  --font-heading:  'Poppins', 'Helvetica Neue', Arial, sans-serif;
+  --font-body:     'Poppins', 'Helvetica Neue', Arial, sans-serif;
 
   --nav-h:         72px;
   --max-w:         1240px;
