@@ -215,7 +215,7 @@ h4{font-size:1.05rem}
 
 /* ══ Products ══ */
 .products-section{padding:100px 0;background:var(--cream-dark)}
-.products-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.75rem;margin-top:3rem}
+.products-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:3rem}
 .product-card{background:var(--cream);border:1px solid var(--border-light);border-radius:8px;overflow:hidden;transition:all .3s;display:flex;flex-direction:column}
 .product-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
 .product-card-img{height:220px;display:flex;align-items:center;justify-content:center;background:var(--cream-dark);position:relative}
