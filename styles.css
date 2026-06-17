@@ -336,18 +336,18 @@ h4{font-size:1.05rem}
 .process-track{position:relative}
 
 /* Row 1: 4-col grid, LTR */
-.process-row-1{display:grid;grid-template-columns:repeat(4,1fr);position:relative}
+.process-row-1{display:grid;grid-template-columns:repeat(3,1fr);position:relative}
 /* Horizontal dashed connector — spans from center of col-1 to center of col-4 */
-.process-row-1::after{content:'';position:absolute;top:45px;left:calc(100%/8);right:calc(100%/8);border-top:1.5px dashed rgba(184,134,11,.35);z-index:0}
+.process-row-1::after{content:'';position:absolute;top:45px;left:calc(100%/6);right:calc(100%/6);border-top:1.5px dashed rgba(184,134,11,.35);z-index:0}
 
 /* Z-bend: vertical line on right side linking rows */
 .process-z-connector{position:relative;height:60px}
-.process-z-connector::after{content:'';position:absolute;right:calc(100%/8 - 1px);top:0;bottom:0;border-right:1.5px dashed rgba(184,134,11,.35)}
+.process-z-connector::after{content:'';position:absolute;right:calc(100%/6 - 1px);top:0;bottom:0;border-right:1.5px dashed rgba(184,134,11,.35)}
 
 /* Row 2: 4-col grid, items placed in cols 4, 3, 2 (snake right→left) */
-.process-row-2{display:grid;grid-template-columns:repeat(4,1fr);position:relative}
+.process-row-2{display:grid;grid-template-columns:repeat(3,1fr);position:relative}
 /* Connector from col-2 center to col-4 center */
-.process-row-2::after{content:'';position:absolute;top:45px;left:calc(100%*3/8);right:calc(100%/8);border-top:1.5px dashed rgba(184,134,11,.35);z-index:0}
+.process-row-2::after{content:'';position:absolute;top:45px;left:calc(100%/6);right:calc(100%/6);border-top:1.5px dashed rgba(184,134,11,.35);z-index:0}
 
 /* Column placement for row-2 items — explicit grid-row:1 prevents auto-placement cursor bug */
 .pn--col4{grid-column:4;grid-row:1}
