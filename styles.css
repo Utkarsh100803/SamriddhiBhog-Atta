@@ -222,6 +222,7 @@ h4{font-size:1.05rem}
 .product-sku-img{max-height:205px;max-width:100%;width:auto;height:auto;object-fit:contain;display:block;transition:transform .3s}
 .product-card:hover .product-sku-img{transform:scale(1.04)}
 .product-pack{width:100px;height:140px;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;font-family:var(--font-heading);text-align:center;box-shadow:0 6px 20px rgba(0,0,0,.15);transform:rotate(-3deg);transition:transform .3s}
+.product-pack-fallback{display:none}
 .product-card:hover .product-pack{transform:rotate(0deg) scale(1.05)}
 .product-pack .pack-brand{font-size:.5rem;letter-spacing:.1em;opacity:.8;margin-bottom:2px}
 .product-pack .pack-name{font-size:.95rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
