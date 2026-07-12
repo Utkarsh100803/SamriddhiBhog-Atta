@@ -106,6 +106,8 @@ h4{font-size:1.05rem}
 .nav-inner{width:90%;max-width:var(--max-w);margin:0 auto;height:100%;display:flex;align-items:center;justify-content:space-between}
 .nav-logo{font-family:var(--font-display);font-size:1.55rem;font-weight:700;color:var(--red);letter-spacing:-.01em}
 .nav-logo span{color:var(--red-dark);font-weight:800}
+.nav-logo-image{display:inline-flex;align-items:center;flex-shrink:0}
+.header-logo{height:52px;width:auto;display:block;object-fit:contain}
 .nav-logo-full{display:flex;align-items:center;gap:.75rem}
 .nav-logo-emblem{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--red),var(--red-dark));display:flex;align-items:center;justify-content:center;color:var(--gold-light);font-family:var(--font-heading);font-size:.9rem;font-weight:700;letter-spacing:.08em;box-shadow:0 4px 14px rgba(74,13,14,.16)}
 .nav-logo-text{font-family:var(--font-display);font-size:1.1rem;font-weight:700;color:var(--red-dark);line-height:1.1;letter-spacing:-.01em}
@@ -660,6 +662,7 @@ h4{font-size:1.05rem}
   .nav-links,.nav-cta{display:none}
   .nav-hamburger{display:flex}
   .nav-logo{font-size:1.3rem}
+  .header-logo{height:46px}
 
   /* Hero video */
   .hero-video-content{padding:0 5%}
@@ -749,6 +752,7 @@ h4{font-size:1.05rem}
 
   /* Nav */
   .nav-logo{font-size:1.2rem}
+  .header-logo{height:42px}
   .nav-mobile{width:100%;right:-100%}
 
   /* Hero video */
@@ -820,6 +824,7 @@ h4{font-size:1.05rem}
   html{font-size:13px}
   .hero-video-title{font-size:2.2rem}
   .nav-logo{font-size:1.1rem}
+  .header-logo{height:38px}
   .hero-video-btns .btn{font-size:.72rem;padding:.7rem 1rem}
 }
 
