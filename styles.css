@@ -468,6 +468,7 @@ h4{font-size:1.05rem}
 
 /* ══ Page Hero (inner pages) ══ */
 .page-hero{padding:calc(var(--nav-h) + 60px) 0 60px;background:var(--cream)}
+.page-hero--products{background:#fff;border-bottom:1px solid var(--border)}
 .page-hero p,.page-hero-content p{font-size:1.3rem;line-height:1.85}
 .page-hero--about{display:grid;grid-template-columns:1fr 1fr;gap:0;align-items:stretch;min-height:80vh;padding-top:var(--nav-h);padding-bottom:0}
 .page-hero-photo{min-height:500px;background:var(--cream-deeper);display:flex;align-items:center;justify-content:center;font-family:var(--font-heading);font-size:.8rem;color:var(--text-muted);letter-spacing:.1em;text-transform:uppercase}
