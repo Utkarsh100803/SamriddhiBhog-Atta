@@ -106,6 +106,8 @@ h4{font-size:1.05rem}
 .nav-inner{width:90%;max-width:var(--max-w);margin:0 auto;height:100%;display:flex;align-items:center;justify-content:space-between}
 .nav-logo{font-family:var(--font-display);font-size:1.55rem;font-weight:700;color:var(--red);letter-spacing:-.01em}
 .nav-logo span{color:var(--red-dark);font-weight:800}
+.nav-logo-image{display:inline-flex;align-items:center;flex-shrink:0;padding:2px 0}
+.header-logo{height:56px;width:auto;display:block;object-fit:contain;filter:drop-shadow(0 2px 4px rgba(58,10,11,.12))}
 .nav-logo-full{display:flex;align-items:center;gap:.75rem}
 .nav-logo-emblem{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--red),var(--red-dark));display:flex;align-items:center;justify-content:center;color:var(--gold-light);font-family:var(--font-heading);font-size:.9rem;font-weight:700;letter-spacing:.08em;box-shadow:0 4px 14px rgba(74,13,14,.16)}
 .nav-logo-text{font-family:var(--font-display);font-size:1.1rem;font-weight:700;color:var(--red-dark);line-height:1.1;letter-spacing:-.01em}
@@ -451,11 +453,6 @@ h4{font-size:1.05rem}
 .footer{background:var(--maroon-dark);color:rgba(255,249,240,.75);padding:72px 0 0}
 .footer-inner{width:90%;max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:4rem;padding-bottom:56px}
 
-.footer-logo-lockup{display:inline-flex;align-items:center;gap:.85rem;margin-bottom:1.5rem}
-.footer-logo-image{height:54px;width:auto;display:block;object-fit:contain;filter:drop-shadow(0 4px 10px rgba(0,0,0,.2))}
-.footer-logo-emblem{width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,#fff1d2,#d8a735);display:flex;align-items:center;justify-content:center;color:var(--red-dark);font-family:var(--font-heading);font-size:1rem;font-weight:700;letter-spacing:.08em;box-shadow:0 6px 18px rgba(0,0,0,.18)}
-.footer-logo-text{display:block;font-family:var(--font-display);font-size:1.85rem;color:#fff;line-height:1;letter-spacing:-.01em}
-.footer-logo-sub{display:block;font-style:italic;font-size:.9rem;color:rgba(255,249,240,.55);margin-top:.25rem;line-height:1.4}
 .footer-brand .btn-whatsapp{background:rgba(255,249,240,.08);border:1px solid rgba(255,249,240,.2);color:rgba(255,249,240,.9);font-size:.82rem;padding:.75rem 1.6rem;border-radius:6px;display:inline-flex;align-items:center;gap:.5rem;transition:background .2s}
 .footer-brand .btn-whatsapp:hover{background:rgba(255,249,240,.14)}
 .footer-brand .location{font-size:.82rem;color:rgba(255,249,240,.35);margin-top:1.25rem;line-height:1.7}
@@ -661,7 +658,7 @@ h4{font-size:1.05rem}
   .nav-links,.nav-cta{display:none}
   .nav-hamburger{display:flex}
   .nav-logo{font-size:1.3rem}
-  .footer-logo-image{height:48px}
+  .header-logo{height:48px}
 
   /* Hero video */
   .hero-video-content{padding:0 5%}
@@ -751,7 +748,7 @@ h4{font-size:1.05rem}
 
   /* Nav */
   .nav-logo{font-size:1.2rem}
-  .footer-logo-image{height:44px}
+  .header-logo{height:44px}
   .nav-mobile{width:100%;right:-100%}
 
   /* Hero video */
@@ -823,7 +820,7 @@ h4{font-size:1.05rem}
   html{font-size:13px}
   .hero-video-title{font-size:2.2rem}
   .nav-logo{font-size:1.1rem}
-  .footer-logo-image{height:40px}
+  .header-logo{height:40px}
   .hero-video-btns .btn{font-size:.72rem;padding:.7rem 1rem}
 }
 
