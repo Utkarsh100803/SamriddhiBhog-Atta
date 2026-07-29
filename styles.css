@@ -466,6 +466,8 @@ h4{font-size:1.05rem}
 .footer-bottom-inner{width:90%;max-width:var(--max-w);margin:0 auto;display:flex;justify-content:space-between;align-items:center;font-size:.78rem;color:rgba(255,249,240,.3)}
 .footer-bottom-inner a{color:rgba(255,249,240,.3);transition:color .2s}
 .footer-bottom-inner a:hover{color:rgba(255,249,240,.65)}
+.footer-owner-link{display:inline-flex;align-items:center;justify-content:center;padding:.45rem .85rem;border:1px solid rgba(255,249,240,.28);border-radius:999px;font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;color:rgba(255,249,240,.88)!important;background:rgba(255,249,240,.06);transition:background .2s,border-color .2s,color .2s}
+.footer-owner-link:hover{background:rgba(255,249,240,.14);border-color:rgba(255,249,240,.45);color:#fff!important}
 
 /* ══ WhatsApp Float ══ */
 .whatsapp-float{position:fixed;bottom:24px;right:24px;z-index:999}
