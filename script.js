@@ -5,7 +5,7 @@
 (function () {
   'use strict';
 
-  const WHATSAPP_NUMBER = '919999999999';
+  const WHATSAPP_NUMBER = '918100768309';
   const WHATSAPP_MSG = encodeURIComponent('Hello! I would like to place an order with Samriddhi Bhog.');
 
   /* ── Hero video autoplay ── */
@@ -201,27 +201,37 @@
     });
   }
 
-  /* ── Contact form ── */
+  /* ── Contact form (sends via WhatsApp) ── */
   function initContactForm() {
     var form = document.querySelector('#contact-form');
     if (!form) return;
     form.addEventListener('submit', function (e) {
       e.preventDefault();
+      var name = form.querySelector('#name').value.trim();
+      var phone = form.querySelector('#phone').value.trim();
+      var typeSelect = form.querySelector('#type');
+      var type = typeSelect.options[typeSelect.selectedIndex].text;
+      var message = form.querySelector('#message').value.trim();
+
+      var lines = [
+        'New enquiry from website:',
+        'Name: ' + name,
+        'Phone: ' + phone,
+        'Enquiry Type: ' + type
+      ];
+      if (message) lines.push('Message: ' + message);
+
       var btn = form.querySelector('[type="submit"]');
       var origText = btn.textContent;
-      btn.textContent = 'Sending…';
+      btn.textContent = 'Opening WhatsApp…';
       btn.disabled = true;
+
+      window.open('https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(lines.join('\n')), '_blank');
+
       setTimeout(function () {
-        btn.textContent = 'Message Sent ✓';
-        btn.style.background = '#25D366';
-        btn.style.borderColor = '#25D366';
         form.reset();
-        setTimeout(function () {
-          btn.textContent = origText;
-          btn.disabled = false;
-          btn.style.background = '';
-          btn.style.borderColor = '';
-        }, 3500);
+        btn.textContent = origText;
+        btn.disabled = false;
       }, 1200);
     });
   }
@@ -239,27 +249,38 @@
     });
   }
 
-  /* ── Dealership form ── */
+  /* ── Dealership form (sends via WhatsApp) ── */
   function initDealerForm() {
     var form = document.querySelector('#dealer-form');
     if (!form) return;
     form.addEventListener('submit', function (e) {
       e.preventDefault();
+      var name = form.querySelector('#d-name').value.trim();
+      var phone = form.querySelector('#d-phone').value.trim();
+      var email = form.querySelector('#d-email').value.trim();
+      var address = form.querySelector('#d-address').value.trim();
+      var message = form.querySelector('#d-message').value.trim();
+
+      var lines = [
+        'New dealership/B2B enquiry from website:',
+        'Name: ' + name,
+        'Phone: ' + phone
+      ];
+      if (email) lines.push('Email: ' + email);
+      if (address) lines.push('Address: ' + address);
+      if (message) lines.push('Message: ' + message);
+
       var btn = form.querySelector('[type="submit"]');
       var origText = btn.textContent;
-      btn.textContent = 'Submitting…';
+      btn.textContent = 'Opening WhatsApp…';
       btn.disabled = true;
+
+      window.open('https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(lines.join('\n')), '_blank');
+
       setTimeout(function () {
-        btn.textContent = 'Submitted ✓';
-        btn.style.background = '#25D366';
-        btn.style.borderColor = '#25D366';
         form.reset();
-        setTimeout(function () {
-          btn.textContent = origText;
-          btn.disabled = false;
-          btn.style.background = '';
-          btn.style.borderColor = '';
-        }, 3500);
+        btn.textContent = origText;
+        btn.disabled = false;
       }, 1200);
     });
   }
