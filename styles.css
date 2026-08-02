@@ -469,6 +469,24 @@ h4{font-size:1.05rem}
 .footer-owner-link{display:inline-flex;align-items:center;justify-content:center;padding:.45rem .85rem;border:1px solid rgba(255,249,240,.28);border-radius:999px;font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;color:rgba(255,249,240,.88)!important;background:rgba(255,249,240,.06);transition:background .2s,border-color .2s,color .2s}
 .footer-owner-link:hover{background:rgba(255,249,240,.14);border-color:rgba(255,249,240,.45);color:#fff!important}
 
+/* ══ Nutrition Page ══ */
+.nutrition-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;align-items:start}
+.nutrition-card{background:#fff;border:1px solid var(--border-light);border-radius:8px;overflow:hidden}
+.nutrition-card-header{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.25rem;background:var(--maroon-dark)}
+.nutrition-card-label{font-family:var(--font-heading);font-size:1rem;font-weight:700;color:#fff;letter-spacing:.02em}
+.nutrition-serving{font-size:.75rem;color:rgba(255,249,240,.55);letter-spacing:.05em;text-transform:uppercase}
+.nutrition-table{width:100%;border-collapse:collapse;font-size:.92rem}
+.nutrition-table thead tr{background:var(--cream-deeper)}
+.nutrition-table th{padding:.55rem 1.25rem;text-align:left;font-family:var(--font-heading);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);font-weight:700}
+.nutrition-table th:last-child,.nutrition-table td:last-child{text-align:right}
+.nutrition-table td{padding:.5rem 1.25rem;color:var(--text-body);border-bottom:1px solid var(--border-light)}
+.nutrition-table tbody tr:last-child td{border-bottom:none}
+.nutrition-row--energy td{font-weight:700;color:var(--red-dark);background:rgba(192,24,26,.04)}
+.nutrition-row--sub td{padding-left:2rem;color:var(--text-muted);font-size:.87rem}
+.nutrition-row--highlight td{color:var(--red-dark);font-weight:600}
+.nutrition-highlights{display:flex;flex-wrap:wrap;gap:.4rem;padding:.85rem 1.25rem;background:var(--cream)}
+.nutrition-badge{font-size:.72rem;font-family:var(--font-heading);font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--red-dark);background:rgba(192,24,26,.07);border:1px solid rgba(192,24,26,.15);padding:.25rem .6rem;border-radius:4px}
+
 /* ══ WhatsApp Float ══ */
 .whatsapp-float{position:fixed;bottom:24px;right:24px;z-index:999}
 .whatsapp-float-btn{width:56px;height:56px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:transform .3s;cursor:pointer}
