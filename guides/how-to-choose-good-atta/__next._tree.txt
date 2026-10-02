@@ -1,5 +1,5 @@
 :HL["/_next/static/media/0484562807a97172-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/_next/static/media/8888a3826f4a3af4-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/_next/static/media/eafabf029ad39a43-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
-:HL["/_next/static/css/bc08bcf4467c2a73.css","style"]
-0:{"tree":{"name":"","param":null,"prefetchHints":4112,"slots":{"children":{"name":"guides","param":null,"prefetchHints":4160,"slots":{"children":{"name":"slug","param":{"type":"d","key":"how-to-choose-good-atta","siblings":[]},"prefetchHints":4192,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":4256,"slots":null}}}}}}},"staleTime":300,"buildId":"kjPyJco1EySKOjAzCXlQf"}
+:HL["/_next/static/css/ad4b6bfd989a5c43.css","style"]
+0:{"tree":{"name":"","param":null,"prefetchHints":4112,"slots":{"children":{"name":"guides","param":null,"prefetchHints":4160,"slots":{"children":{"name":"slug","param":{"type":"d","key":"how-to-choose-good-atta","siblings":[]},"prefetchHints":4192,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":4256,"slots":null}}}}}}},"staleTime":300,"buildId":"0bitY__fC03_5GVIe07ss"}
