@@ -1,0 +1,23 @@
+{
+  "name": "Samriddhi Bhog",
+  "short_name": "Samriddhi Bhog",
+  "description": "Atta, besan, dalia and sattu from Dankuni, West Bengal.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fbf5e9",
+  "theme_color": "#8f151d",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

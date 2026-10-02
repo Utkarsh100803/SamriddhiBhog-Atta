@@ -1,0 +1,5 @@
+User-Agent: *
+Allow: /
+
+Host: https://samriddhibhog.com
+Sitemap: https://samriddhibhog.com/sitemap.xml

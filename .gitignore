@@ -25,10 +25,10 @@ node_modules/
 bower_components/
 
 # Build outputs
-dist/
-build/
-*.min.css
-*.min.js
+/dist/
+/build/
+/*.min.css
+/*.min.js
 
 # Environment variables
 .env
