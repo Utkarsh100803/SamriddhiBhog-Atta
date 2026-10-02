@@ -1,5 +1,5 @@
 :HL["/_next/static/media/0484562807a97172-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/_next/static/media/8888a3826f4a3af4-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/_next/static/media/eafabf029ad39a43-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
-:HL["/_next/static/css/c69aa93531d20e4c.css","style"]
-0:{"tree":{"name":"","param":null,"prefetchHints":4112,"slots":{"children":{"name":"recipes","param":null,"prefetchHints":4160,"slots":{"children":{"name":"slug","param":{"type":"d","key":"sattu-sharbat","siblings":[]},"prefetchHints":4192,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":4256,"slots":null}}}}}}},"staleTime":300,"buildId":"457lpfHvxAAzLB_p00trI"}
+:HL["/_next/static/css/667c59a98a921f8a.css","style"]
+0:{"tree":{"name":"","param":null,"prefetchHints":4112,"slots":{"children":{"name":"recipes","param":null,"prefetchHints":4160,"slots":{"children":{"name":"slug","param":{"type":"d","key":"sattu-sharbat","siblings":[]},"prefetchHints":4192,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":4256,"slots":null}}}}}}},"staleTime":300,"buildId":"cBfbL3U-ZInuimgzrEWmY"}
